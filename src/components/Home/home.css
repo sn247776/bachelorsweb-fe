@@ -1,0 +1,118 @@
+.bg-hero {
+  background-image: url("../../assets/hero/hero-bg.jpg");
+}
+
+span {
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hero-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 19%;
+}
+
+.hero-text h1 {
+  font-size: 68px;
+  line-height: 84px;
+  font-weight: 800;
+}
+
+.hero-text h4 {
+  color: var(--main-color);
+  font-weight: 800;
+  line-height: 26px;
+  letter-spacing: 1.6px;
+}
+
+.hero-text p {
+  color: #6f6b80;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.grid-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 80px);
+}
+
+.girl {
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  min-width: 500px;
+  width: 35vw;
+  z-index: 2;
+}
+.girl-bg {
+  position: absolute;
+  right: 8%;
+  bottom: 0;
+  width: 40vw;
+  min-width: 500px;
+  z-index: 1;
+}
+
+.shape-1 {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.shape-2 {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+}
+
+/* Students Review Section Started Here */
+
+.reviews-main {
+  background-image: url(../../assets/hero/hero-bg.jpg);
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.review-grid {
+  text-align: right;
+}
+
+.slides p {
+  font-size: 24px;
+  line-height: 36px;
+  color: #6f6b80;
+  font-weight: 500;
+  margin: 50px 0;
+}
+
+.slides h3 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+.slides h4 {
+  color: #525fe1;
+  font-size: 16px;
+  line-height: 26px;
+}
