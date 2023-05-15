@@ -1,0 +1,67 @@
+.courses-card{
+    position: relative;
+    
+}
+
+.course-card-main{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 480px;
+    position: relative;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.course-card-main h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.course-card-main h5{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.course-card-main p{
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.cat-box{
+    position: absolute;
+    background-color: var(--main-color);
+    padding: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border: 2px solid white;
+    top: 230px;
+    left: 15px;
+    z-index: 1;
+}
+.course-card h5{
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 700;
+    margin: 10px 0px;
+}
+
+.course-card-main img{
+    width: 20vw;
+    height: 250px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.playlist-btn{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--main-color);
+}

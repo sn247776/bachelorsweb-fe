@@ -14,6 +14,7 @@ body{
 
 :root {
     --main-color: #525fe1;
+    --text-color: #6f6b80;
     --main-hover: #000000;
 }
 
@@ -35,4 +36,30 @@ body{
       line-height: 56px;
       font-weight: 800;
       margin: 25px 0;
+    }
+
+
+    .scroll-container {
+      overflow-x: scroll;
+      white-space: nowrap;
+      padding: 10px;
+      width: 100%;
+    }
+    
+    .scroll-content {
+      display: inline-block;
+      width: auto;
+      white-space: nowrap;
+    }
+
+
+    
+   ::-webkit-scrollbar-thumb {
+      background-color: var(--main-color);
+      border-radius: 0px;
+    }
+    
+ ::-webkit-scrollbar {
+      height: 8px;
+      width: 10px;
     }

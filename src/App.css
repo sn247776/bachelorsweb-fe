@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #231f40;
+  color: white;
+  padding: 80px 0px 10px 0px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.footer h1 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+.footer h5 {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 500;
+  }
+
+.footer .logo{
+    display: flex;
+    align-items: center;
+}

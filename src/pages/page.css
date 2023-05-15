@@ -1,0 +1,27 @@
+.course-search{
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.course-search input{
+    width: 90vw;
+    padding: 10px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+}
+
+.course-search input::placeholder{
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.course-grid{
+    margin: 50px 0;
+    display: grid;
+    grid-template-columns: 20vw 20vw 20vw 20vw;
+    justify-content: space-between;
+    grid-row-gap: 30px;
+    
+}

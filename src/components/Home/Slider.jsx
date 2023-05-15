@@ -8,7 +8,7 @@ import Quote from "../../assets/quote.png"
 function Slider() {
   return (
     <Box width={"50vw"} maxWidth={"600px"} textAlign={"left"}>
-      <Carousel itemsToShow={1} enableAutoPlay autoPlaySpeed={5000} >
+      <Carousel itemsToShow={1} enableAutoPlay autoPlaySpeed={15000} >
         <div className="slides">
             <img src={Quote}/>
           <p>
