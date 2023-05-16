@@ -4,6 +4,10 @@ import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import Home from './pages/Home';
 import Courses from './pages/Courses';
+import Login from './pages/auth/Login';
+import SignUp from './pages/auth/SignUp';
+import Forgot from './pages/auth/Forgot'
+import ResetPassword from './pages/auth/ResetPassword';
 
 
 function App() {
@@ -16,6 +20,10 @@ function App() {
       <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/courses" element={<Courses/>} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/signup" element={<SignUp/>} />
+      <Route path="/forgot" element={<Forgot/>} />
+      <Route path="/resetpassword" element={<ResetPassword/>} />
       </Routes>
     </Router>
     </ThemeProvider>

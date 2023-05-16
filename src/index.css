@@ -37,22 +37,6 @@ body{
       font-weight: 800;
       margin: 25px 0;
     }
-
-
-    .scroll-container {
-      overflow-x: scroll;
-      white-space: nowrap;
-      padding: 10px;
-      width: 100%;
-    }
-    
-    .scroll-content {
-      display: inline-block;
-      width: auto;
-      white-space: nowrap;
-    }
-
-
     
    ::-webkit-scrollbar-thumb {
       background-color: var(--main-color);

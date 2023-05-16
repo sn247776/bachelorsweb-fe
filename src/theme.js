@@ -167,9 +167,11 @@ export const themeSettings = (mode) => {
               default: "#fcfcfc",
             },
           }),
-    }
+    },
+    typography: { fontFamily: 'Urbanist, sans-serif', fontWeightRegular: 600, }
   };
 };
+
 
 // context for color mode
 export const ColorModeContext = createContext({

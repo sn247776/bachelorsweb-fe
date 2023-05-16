@@ -1,7 +1,21 @@
+.scroll-container {
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: 10px;
+    width: 100%;
+    margin: 50px 0;
+  }
+  
+  .scroll-content {
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+  }
+
 .course-search{
     display: flex;
     justify-content: center;
-    padding: 50px 0;
+    
 }
 
 .course-search input{

@@ -27,9 +27,7 @@ function Courses() {
   return (
     <Box>
       <UniversalHero />
-      <Box className="course-search">
-        <input placeholder="Search course..." style={inputStyle} />
-      </Box>
+
 
       <Box display={"flex"} justifyContent={"center"}>
       <Box width={"50vw"} className="scroll-container">
@@ -48,6 +46,10 @@ function Courses() {
         ))}
       </Box>
     </Box>
+      </Box>
+
+            <Box className="course-search">
+        <input placeholder="Search course..." style={inputStyle} />
       </Box>
 
       <Box px={5} className="course-grid">
