@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Header from "../../components/Layout/Header";
-
+import bgImg from "../../assets/bg-sign.png"
 export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,14 +30,14 @@ export default function SignUp() {
             sm={4}
             md={8}
             sx={{
-              backgroundImage: "url(https://source.unsplash.com/random)",
+              backgroundImage: `url(${bgImg})`,
               backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
                 t.palette.mode === "light"
                   ? t.palette.grey[50]
                   : t.palette.grey[900],
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundSize: "75vh",
+              backgroundPosition: "top",
             }}
           />
           <Grid item xs={12} sm={8} md={4} elevation={6} square>
@@ -53,7 +53,7 @@ export default function SignUp() {
               <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                 <LockOutlinedIcon />
               </Avatar>
-              <h2>Sign in</h2>
+              <h2>Sign up</h2>
               <Box
                 component="form"
                 noValidate

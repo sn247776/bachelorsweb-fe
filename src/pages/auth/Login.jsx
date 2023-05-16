@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Header from '../../components/Layout/Header';
+import bgImg from "../../assets/bg-login.png"
 
 export default function Login() {
   const handleSubmit = (event) => {
@@ -33,11 +34,11 @@ export default function Login() {
           sm={4}
           md={8}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: `url(${bgImg})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
+            backgroundSize: '90vh',
             backgroundPosition: 'center',
           }}
         />
