@@ -8,6 +8,8 @@ import Login from './pages/auth/Login';
 import SignUp from './pages/auth/SignUp';
 import Forgot from './pages/auth/Forgot'
 import ResetPassword from './pages/auth/ResetPassword';
+import Contact from './pages/Contact';
+import RequestCourse from './pages/RequestCourse';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
       <Route path="/signup" element={<SignUp/>} />
       <Route path="/forgot" element={<Forgot/>} />
       <Route path="/resetpassword" element={<ResetPassword/>} />
+      <Route path="/contact" element={<Contact/>} />
+      <Route path="/courserequest" element={<RequestCourse/>} />
       </Routes>
     </Router>
     </ThemeProvider>
