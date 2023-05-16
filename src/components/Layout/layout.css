@@ -1,16 +1,61 @@
-.uni-bg{
-    background-image: url("../../assets/hero/hero-bg.jpg");
+.uni-bg {
+  background-image: url("../../assets/hero/hero-bg.jpg");
 }
 
-.uni-title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30vh;
-
+.uni-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
 }
 
-.uni-title h1{
-    font-size: 5rem;
-    font-weight: 600;
+.uni-title h1 {
+  font-size: 5rem;
+  font-weight: 600;
 }
+
+
+/* Header CSS is Here */
+
+.navbar span {
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.navbar {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 999;
+  transition: 0.5s;
+}
+
+  .mob-navbar{
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-height: 50vh;
+    width: 100vw;
+    z-index: 5000;
+  }
+  
+  .open{
+    display: none;
+  }
+  
+  .mob-navbar span{
+    margin: 15px 0;
+  }
+
+@media screen and (max-width: 800px) {
+  .navbar span {
+    display: none;
+  }
+}
+@media screen and (min-width: 801px) {
+    .mobMenu {
+      display: none;
+    }
+  }

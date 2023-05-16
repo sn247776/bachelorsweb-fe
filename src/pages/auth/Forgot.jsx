@@ -22,7 +22,7 @@ export default function Forgot() {
 
   return (
     <Box >
-        <UniversalHero/>
+        <UniversalHero title="Forgot Password"/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

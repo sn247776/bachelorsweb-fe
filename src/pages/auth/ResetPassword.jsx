@@ -21,7 +21,7 @@ export default function ResetPassword() {
 
   return (
     <Box>
-      <UniversalHero />
+      <UniversalHero title="Reset Password" />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

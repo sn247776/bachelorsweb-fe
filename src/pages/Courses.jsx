@@ -26,7 +26,7 @@ function Courses() {
   };
   return (
     <Box>
-      <UniversalHero />
+      <UniversalHero title="Our Courses" />
 
 
       <Box display={"flex"} justifyContent={"center"}>

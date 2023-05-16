@@ -2,12 +2,7 @@
   background-image: url("../../assets/hero/hero-bg.jpg");
 }
 
-span {
-  margin: 0 10px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
+
 
 .hero-text {
   display: flex;
@@ -40,7 +35,7 @@ span {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: calc(100vh - 80px);
+  height: 100vh;
 }
 
 .girl {

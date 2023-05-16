@@ -22,7 +22,9 @@ export default function Login() {
 
   return (
     <Box>
+        <Box height={"80px"}>
         <Header/>
+        </Box>
         <Box>
       <Grid container component="main" sx={{ height: "calc(100vh - 80px)" }}>
         <Grid
