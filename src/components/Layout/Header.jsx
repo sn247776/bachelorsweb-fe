@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Box, IconButton, useTheme, Button } from "@mui/material";
 
-import { ColorModeContext, tokens } from "../../theme";
+import { tokens } from "../../theme";
 
 import PersonIcon from "@mui/icons-material/Person";
 import Logo from "../../assets/logo.png";
@@ -12,7 +12,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 const Header = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
   const [navbar, setNavbar] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -79,7 +78,7 @@ const Header = () => {
           <NavLink style={navLinkStyles} to="/courses">
             <span>Courses</span>
           </NavLink>
-          <NavLink style={navLinkStyles} to="/course">
+          <NavLink style={navLinkStyles} to="/about">
             <span>About</span>
           </NavLink>
 

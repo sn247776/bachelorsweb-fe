@@ -1,11 +1,12 @@
-import { Box } from "@mui/material";
+import { Box} from "@mui/material";
 import React from "react";
 import CalculateIcon from '@mui/icons-material/CalculateOutlined';
 
 function PopularCatBox() {
   return (
+    
     <Box className="popularcat">
-     
+
         <Box className="popularcat-main">
             <Box>
             <CalculateIcon fontSize="large" color="secondary"/>
@@ -18,8 +19,9 @@ function PopularCatBox() {
           <h5>Lifestyle</h5>
           <p>Embrace nature for a more peaceful lifestyle.</p>
         </Box>
-   
+
     </Box>
+    
   );
 }
 

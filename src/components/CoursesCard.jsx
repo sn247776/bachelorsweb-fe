@@ -1,10 +1,11 @@
-import { Avatar, Box, Button } from "@mui/material";
+import { Avatar, Box, Button,Paper  } from "@mui/material";
 import React from "react";
 import "./components.css"
 import CourseImg from "../assets/course-grid.webp"
 
 function CoursesCard() {
   return (
+    <Paper>
     <Box className="courses-card" textAlign={"center"}>
      
         <Box className="course-card-main">
@@ -44,6 +45,7 @@ function CoursesCard() {
         <Box className="cat-box">Web Development</Box>
    
     </Box>
+    </Paper>
   );
 }
 
