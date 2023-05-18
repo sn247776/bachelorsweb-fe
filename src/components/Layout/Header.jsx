@@ -112,8 +112,8 @@ const Header = () => {
         bgcolor={"white"}
       >
         <Box textAlign="right">
-          <IconButton>
-            <CloseIcon onClick={handleMenuClick} />
+          <IconButton onClick={handleMenuClick}>
+            <CloseIcon  />
           </IconButton>
         </Box>
         <Box

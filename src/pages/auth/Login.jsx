@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/actions/user';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,13 +14,14 @@ import Header from '../../components/Layout/Header';
 import bgImg from "../../assets/bg-login.png"
 
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+
+  const submitHandler = e => {
+    e.preventDefault();
+    dispatch(login(email, password));
   };
 
   return (
@@ -58,12 +61,15 @@ export default function Login() {
             <h2>
               Sign in
             </h2>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box sx={{ mt: 1 }}>
+            <form onSubmit={submitHandler}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
+                value={email}
                 id="email"
+                onChange={e => setEmail(e.target.value)}
                 label="Email Address"
                 name="email"
                 autoComplete="email"
@@ -75,6 +81,8 @@ export default function Login() {
                 margin="normal"
                 required
                 fullWidth
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 name="password"
                 label="Password"
                 type="password"
@@ -103,6 +111,7 @@ export default function Login() {
               >
                 Sign In
               </Button>
+              </form>
               <Grid container>
                 <Grid item xs>
                   <Link href="/forgot" variant="body2" color={"secondary"}>

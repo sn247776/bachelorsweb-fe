@@ -118,3 +118,12 @@
   height: 80vh;
   overflow: auto;
 }
+
+.profile{
+  display: grid;
+  grid-template-columns: 300px 300px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  
+}

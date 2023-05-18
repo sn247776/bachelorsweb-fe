@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
 import CoursePage from "./pages/CoursePage";
+import Profile from "./pages/Profile";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -36,9 +37,10 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/courserequest" element={<RequestCourse />} />
             <Route path="/subscribe" element={<Subscribe />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/paymentsuccess" element={<PaymentSuccess />} />
             <Route path="/paymentfail" element={<PaymentFail />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       </ThemeProvider>
