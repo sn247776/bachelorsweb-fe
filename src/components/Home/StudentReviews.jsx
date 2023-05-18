@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import Slider from './Slider'
+// import Slider from './Slider'
 import ReviewImg from "../../assets/review.jpg"
 
 function StudentReviews() {
@@ -17,7 +17,7 @@ function StudentReviews() {
                 <img src={ReviewImg}/>
             </Box>
             <Box className="review-text">
-                <Slider />
+                {/* <Slider /> */}
             </Box>
         </Box>
         </Box>

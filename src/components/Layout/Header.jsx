@@ -8,8 +8,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import Logo from "../../assets/logo.png";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useUserSelector } from "../../App";
 
 const Header = () => {
+  const { isAuthenticated } = useUserSelector();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [navbar, setNavbar] = useState(false);
@@ -88,19 +90,32 @@ const Header = () => {
         </Box>
 
         <Box display="flex" alignItems="center">
-          
-            <Button
-              variant="contained"
-              startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
-              color="secondary"
-              sx={{
-                fontWeight: 600,
-                padding: "8px 12px",
-                textTransform: "none",
-              }}
-            >
-              Login
-            </Button>
+        {isAuthenticated ? (
+          <Button
+          variant="contained"
+          startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
+          color="secondary"
+          sx={{
+            fontWeight: 600,
+            padding: "8px 12px",
+            textTransform: "none",
+          }}
+        >
+          Profile
+        </Button>
+        ):( <Button
+          variant="contained"
+          startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
+          color="secondary"
+          sx={{
+            fontWeight: 600,
+            padding: "8px 12px",
+            textTransform: "none",
+          }}
+        >
+          Login
+        </Button>)}
+           
             <Box className="mobMenu">
               <MenuIcon onClick={handleMenuClick} />
             </Box>

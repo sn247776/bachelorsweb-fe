@@ -1,8 +1,14 @@
 import { Avatar, Box, Button } from "@mui/material";
 import React from "react";
 import UniversalHero from "../components/Layout/UniversalHero";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/actions/user";
 
 function Profile() {
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <Box>
       <UniversalHero title="Profile" />
@@ -48,6 +54,19 @@ function Profile() {
                 Change Password
               </Button>
             </Box>
+            <Button
+            onClick={logoutHandler}
+                variant="contained"
+                color="secondary"
+                sx={{
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textTransform: "none",
+                  marginLeft:"2px"
+                }}
+              >
+                Logout
+              </Button>
         </Box>
       </Box>
       <Box className="playlist">

@@ -17,27 +17,81 @@ import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
 import CoursePage from "./pages/CoursePage";
 import Profile from "./pages/Profile";
+import { useDispatch, useSelector } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
+import { loadUser } from "./redux/actions/user";
+import { ProtectedRoute } from "protected-route-react";
 
+export const useUserSelector = () => useSelector((state) => state.user);
 function App() {
   const [theme, colorMode] = useMode();
+  const { isAuthenticated, user, message, error, loading } = useUserSelector();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: "clearError" });
+    }
+
+    if (message) {
+      toast.success(message);
+      dispatch({ type: "clearMessage" });
+    }
+  }, [dispatch, error, message]);
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Toaster />
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route
+              path="/login"
+              element={
+                <ProtectedRoute
+                  isAuthenticated={!isAuthenticated}
+                  redirect="/profile"
+                >
+                  <Login />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <ProtectedRoute
+                  isAuthenticated={!isAuthenticated}
+                  redirect="/profile"
+                >
+                  <SignUp />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/forgot" element={<Forgot />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/courserequest" element={<RequestCourse />} />
             <Route path="/subscribe" element={<Subscribe />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <Profile user={user} />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/paymentsuccess" element={<PaymentSuccess />} />
             <Route path="/paymentfail" element={<PaymentFail />} />
             <Route path="*" element={<NotFound />} />
