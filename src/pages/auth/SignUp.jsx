@@ -7,14 +7,40 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Header from "../../components/Layout/Header";
 import bgImg from "../../assets/bg-sign.png"
+import { register } from "../../redux/actions/user";
+import { useDispatch } from "react-redux";
+
+
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [imagePrev, setImagePrev] = useState('');
+  const [image, setImage] = useState('');
+
+  const dispatch = useDispatch();
+  const changeImageHandler = e => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      setImagePrev(reader.result);
+      setImage(file);
+    };
+  };
+
+  const submitHandler = e => {
+    e.preventDefault();
+    const myForm = new FormData();
+
+    myForm.append('name', name);
+    myForm.append('email', email);
+    myForm.append('password', password);
+    myForm.append('file', image);
+
+    dispatch(register(myForm));
   };
 
   return (
@@ -57,7 +83,7 @@ export default function SignUp() {
               <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit}
+                onSubmit={submitHandler}
                 sx={{ mt: 1 }}
               >
                 <TextField
@@ -65,6 +91,8 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
                   label="Name"
                   name="name"
                   autoComplete="name"
@@ -77,6 +105,8 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   label="Email Address"
                   name="email"
                   autoComplete="email"
@@ -92,12 +122,15 @@ export default function SignUp() {
                   label="Password"
                   type="password"
                   id="password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                   autoComplete="current-password"
                   color="secondary"
                   variant="filled"
                 />
 
-                <input type="file" />
+                <input type="file" onChange={changeImageHandler}  accept="image/*"
+              required  id="chooseAvatar" />
 
                 <Button
                   type="submit"
