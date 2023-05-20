@@ -130,7 +130,7 @@ export default function SignUp() {
                 />
 
                 <input type="file" onChange={changeImageHandler}  accept="image/*"
-              required  id="chooseAvatar" />
+              required  id="chooseAvatar" className="upload-box" />
 
                 <Button
                   type="submit"

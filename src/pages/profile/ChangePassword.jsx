@@ -8,24 +8,23 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import UniversalHero from "../../components/Layout/UniversalHero";
-import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPassword } from "../../redux/actions/profile";
+import { changePassword } from "../../redux/actions/profile";
 import { toast } from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
 
-export default function ResetPassword() {
-  const [password, setPassword] = useState('');
+export default function ChangePassword() {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
-  const params = useParams();
   const navigate = useNavigate();
-
-  const { loading, message, error } = useSelector(state => state.profile);
-
   const dispatch = useDispatch();
   const submitHandler = e => {
     e.preventDefault();
-    dispatch(resetPassword(params.token, password));
+    dispatch(changePassword(oldPassword, newPassword));
   };
+
+  const { loading, message, error } = useSelector(state => state.profile);
 
   useEffect(() => {
     if (error) {
@@ -33,15 +32,16 @@ export default function ResetPassword() {
       dispatch({ type: 'clearError' });
     }
     if (message) {
+        navigate('/profile');
       toast.success(message);
       dispatch({ type: 'clearMessage' });
-      navigate('/login');
+
     }
   }, [dispatch, error, message]);
 
   return (
     <Box>
-      <UniversalHero title="Reset Password" />
+      <UniversalHero title="Change Password" />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -56,32 +56,39 @@ export default function ResetPassword() {
             <LockOutlinedIcon />
           </Avatar>
           <Box textAlign={"center"}>
-            <h1>New Password</h1>
+            <h1>Change Password</h1>
             <p>
-              Welcome to the password reset page. Please enter your new password
-              below to set a new password for your account.
+              "Secure your account with a new password: Update your password for
+              enhanced security."
             </p>
           </Box>
-          <Box
-            component="form"
-            onSubmit={submitHandler}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box sx={{ mt: 1 }}>
+          <form onSubmit={submitHandler}>
             <TextField
               margin="normal"
               required
               fullWidth
-              value={password}
-            onChange={e => setPassword(e.target.value)}
-              id="password"
-              label="New Password"
-              name="password"
-              autoComplete="password"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+              type="password"
+              label="Old Password"
+              name="oldpassword"
               autoFocus
               color="secondary"
               variant="filled"
+            />
+
+            <TextField
+              required
+              fullWidth
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
               type="password"
+              label="New Password"
+              name="newpassword"
+              autoFocus
+              color="secondary"
+              variant="filled"
             />
 
             <Button
@@ -97,11 +104,12 @@ export default function ResetPassword() {
                 textTransform: "none",
               }}
             >
-              Reset Password
+              Change Password
             </Button>
+            </form>
             <Box textAlign="center">
               <Link href="#" variant="body2" color="secondary">
-                Return to Login
+                Return to Profile
               </Link>
             </Box>
           </Box>

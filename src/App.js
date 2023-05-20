@@ -23,6 +23,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import { loadUser } from "./redux/actions/user";
 import { ProtectedRoute } from "protected-route-react";
+import UpdateProfile from "./pages/profile/UpdateProfile";
+import ChangePassword from "./pages/profile/ChangePassword";
 
 export const useUserSelector = () => useSelector((state) => state.user);
 function App() {
@@ -87,12 +89,30 @@ function App() {
                 <Route
                   path="/forgot"
                   element={
-                    <ProtectedRoute isAuthenticated={!isAuthenticated}>
+                    <ProtectedRoute
+                      isAuthenticated={!isAuthenticated}
+                      redirect="/profile"
+                    >
                       <Forgot />
                     </ProtectedRoute>
                   }
                 />
-                <Route path="/resetpassword" element={<ResetPassword />} />
+                <Route
+                  path="/resetpassword/:token"
+                  element={
+                    <ProtectedRoute
+                      isAuthenticated={!isAuthenticated}
+                      redirect="/profile"
+                    >
+                      <ResetPassword />{" "}
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/updateprofile"
+                  element={<UpdateProfile user={user} />}
+                />
+                <Route path="/changepassword" element={<ChangePassword />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/courserequest" element={<RequestCourse />} />
                 <Route

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,17 +8,32 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
 import UniversalHero from '../../components/Layout/UniversalHero';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import { forgetPassword } from '../../redux/actions/profile';
 
 
 export default function Forgot() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [email, setEmail] = useState('');
+
+  const { loading, message, error } = useSelector(state => state.profile);
+
+  const dispatch = useDispatch();
+  const submitHandler = e => {
+    e.preventDefault();
+    dispatch(forgetPassword(email));
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
+    if (message) {
+      toast.success(message);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, message]);
 
   return (
     <Box >
@@ -44,11 +59,13 @@ export default function Forgot() {
           Please enter the email address associated with your account and We will email you a link to reset your password.
           </p>
           </Box>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={submitHandler} noValidate sx={{ mt: 1 }}>
           <TextField
                 margin="normal"
                 required
                 fullWidth
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 id="email"
                 label="Email Address"
                 name="email"

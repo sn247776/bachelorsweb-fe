@@ -8,24 +8,25 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import UniversalHero from "../../components/Layout/UniversalHero";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPassword } from "../../redux/actions/profile";
+import { updateProfile } from "../../redux/actions/profile";
+import { loadUser } from "../../redux/actions/user";
 import { toast } from "react-hot-toast";
 
-export default function ResetPassword() {
-  const [password, setPassword] = useState('');
-
-  const params = useParams();
-  const navigate = useNavigate();
-
-  const { loading, message, error } = useSelector(state => state.profile);
-
-  const dispatch = useDispatch();
-  const submitHandler = e => {
-    e.preventDefault();
-    dispatch(resetPassword(params.token, password));
-  };
+export default function UpdateProfile({ user }) {
+    const [name, setName] = useState(user.name);
+    const [email, setEmail] = useState(user.email);
+  
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const submitHandler = async e => {
+      e.preventDefault();
+      await dispatch(updateProfile(name, email));
+      dispatch(loadUser());
+      
+    };
+    const { loading, message, error } = useSelector(state => state.profile);
 
   useEffect(() => {
     if (error) {
@@ -33,15 +34,17 @@ export default function ResetPassword() {
       dispatch({ type: 'clearError' });
     }
     if (message) {
+        navigate('/profile');
       toast.success(message);
       dispatch({ type: 'clearMessage' });
-      navigate('/login');
+
     }
   }, [dispatch, error, message]);
 
+
   return (
     <Box>
-      <UniversalHero title="Reset Password" />
+      <UniversalHero title="Update Profile" />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -56,10 +59,10 @@ export default function ResetPassword() {
             <LockOutlinedIcon />
           </Avatar>
           <Box textAlign={"center"}>
-            <h1>New Password</h1>
+            <h1>Update your Profile</h1>
             <p>
-              Welcome to the password reset page. Please enter your new password
-              below to set a new password for your account.
+              Keep your profile up to date: Easily update your name and email
+              address to ensure accurate and relevant information.
             </p>
           </Box>
           <Box
@@ -68,20 +71,35 @@ export default function ResetPassword() {
             noValidate
             sx={{ mt: 1 }}
           >
+                 <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              value={name}
+              type={'text'}
+              onChange={e => setName(e.target.value)}
+              autoComplete="email"
+              autoFocus
+              color="secondary"
+              variant="filled"
+            />
             <TextField
               margin="normal"
               required
               fullWidth
-              value={password}
-            onChange={e => setPassword(e.target.value)}
-              id="password"
-              label="New Password"
-              name="password"
-              autoComplete="password"
+              id="email"
+              label="Email Address"
+              name="email"
+              value={email}
+              type={'email'}
+              onChange={e => setEmail(e.target.value)}
+              autoComplete="email"
               autoFocus
               color="secondary"
               variant="filled"
-              type="password"
             />
 
             <Button
@@ -97,7 +115,7 @@ export default function ResetPassword() {
                 textTransform: "none",
               }}
             >
-              Reset Password
+              Update
             </Button>
             <Box textAlign="center">
               <Link href="#" variant="body2" color="secondary">

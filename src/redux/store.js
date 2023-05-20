@@ -1,12 +1,13 @@
-import {configureStore} from '@reduxjs/toolkit';
-import { userReducer } from './reducers/userReducer';
+import { configureStore } from "@reduxjs/toolkit";
+import { profileReducer, userReducer } from "./reducers/userReducer";
 
-export const server = 'http://localhost:5000/api/v1'
+export const server = "http://localhost:5000/api/v1";
 
 const store = configureStore({
-    reducer: {
-        user:userReducer
-    },
-})
+  reducer: {
+    user: userReducer,
+    profile: profileReducer,
+  },
+});
 
 export default store;
