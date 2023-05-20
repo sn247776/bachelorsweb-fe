@@ -29,10 +29,11 @@ import ChangePassword from "./pages/profile/ChangePassword";
 export const useUserSelector = () => useSelector((state) => state.user);
 function App() {
   const [theme, colorMode] = useMode();
-  const { isAuthenticated, user, message, error, loading } = useUserSelector();
+  const { isAuthenticated, user, message, error, loading } = useSelector(
+    (state) => state.user
+  );
 
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -62,7 +63,15 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/courses" element={<Courses />} />
-                <Route path="/course/:id" element={<CoursePage />} />
+
+                <Route
+                  path="/course/:id"
+                  element={
+                    <ProtectedRoute isAuthenticated={isAuthenticated}>
+                      <CoursePage user={user} />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route path="/about" element={<About />} />
                 <Route
                   path="/login"

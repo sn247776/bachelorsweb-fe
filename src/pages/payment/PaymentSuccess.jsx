@@ -1,10 +1,11 @@
 import { Box, Button, Paper } from "@mui/material";
 import React from "react";
 import Header from "../../components/Layout/Header";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from 'react-router-dom';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 function PaymentSuccess() {
+  const reference = useSearchParams()[0].get('reference');
   return (
     <Box>
       <Box height={"80px"}>
@@ -29,7 +30,7 @@ function PaymentSuccess() {
             </Box>
             <Box textAlign={"center"} my={5}>
                 <Link to="/login">Go to profile</Link>
-                <Box fontSize={"12px"}><p>Reference: safdfdf44fddsfdd9</p></Box>
+                <Box fontSize={"12px"}><p>Reference: {reference}</p></Box>
             </Box>
           </Box>
         </Paper>

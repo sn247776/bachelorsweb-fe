@@ -5,6 +5,7 @@ import snImg from "../assets/profile-pic.png";
 import girlImg from "../assets/girl-img.webp";
 import Footer from "../components/Layout/Footer";
 import CenterGrid from "../components/CenterGrid";
+import { Link } from "react-router-dom";
 
 function About() {
   return (
@@ -66,6 +67,7 @@ function About() {
             the courses on any device, including desktop computers, tablet &
             mobile devices.
           </p>
+          <Link to="/courses">
           <Button
                 variant="contained"
                 color="secondary"
@@ -78,6 +80,7 @@ function About() {
               >
                 Explore Courses
               </Button>
+              </Link>
         </Box>
       </Box>
       <Footer />

@@ -2,14 +2,19 @@ import { Avatar, Box, Button,CircularProgress   } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UniversalHero from "../components/Layout/UniversalHero";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUser, logout } from "../redux/actions/user";
+import { cancelSubscription, loadUser, logout } from "../redux/actions/user";
 import { Link } from "react-router-dom";
-import { updateProfilePicture } from "../redux/actions/profile";
+import { removeFromPlaylist, updateProfilePicture } from "../redux/actions/profile";
 import { toast } from "react-hot-toast";
 
 function Profile({ user }) {
   const dispatch = useDispatch();
   const { loading, message, error } = useSelector(state => state.profile);
+  const {
+    loading: subscriptionLoading,
+    message: subscriptionMessage,
+    error: subscriptionError,
+  } = useSelector(state => state.subscription);
   const [image, setImage] = useState("");
   const [imagePrev, setImagePrev] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +36,12 @@ function Profile({ user }) {
       setImage(file);
     };
   };
+
+  const removeFromPlaylistHandler = async id => {
+    await dispatch(removeFromPlaylist(id));
+    dispatch(loadUser());
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const myForm = new FormData();
@@ -43,6 +54,10 @@ function Profile({ user }) {
   const logoutHandler = () => {
     dispatch(logout());
   };
+
+  const cancelSubscriptionHandler = () => {
+    dispatch(cancelSubscription());
+  };
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -51,7 +66,19 @@ function Profile({ user }) {
     if (message) {
       toast.success(message);
       dispatch({ type: 'clearMessage' });
-    }})
+    }
+    if (subscriptionMessage) {
+      toast.success(subscriptionMessage);
+      dispatch({ type: 'clearMessage' });
+      dispatch(loadUser());
+    }
+
+    if (subscriptionError) {
+      toast.error(subscriptionError);
+      dispatch({ type: 'clearError' });
+    }
+  }, [dispatch, error, message, subscriptionError, subscriptionMessage]);
+    
   
   return (
     <Box>
@@ -183,7 +210,7 @@ function Profile({ user }) {
                   user.subscription.status === "active" ? (
                     <Button
                    
-                    // onClick={cancelSubscriptionHandler}
+                    onClick={cancelSubscriptionHandler}
                     >
                       Cancel Subscription
                     </Button>
@@ -250,8 +277,31 @@ function Profile({ user }) {
             </Button>
           </Box>
         </Box>
-        <Box className="playlist">
+        <Box >
           <h1>Playlist</h1>
+          <Box >
+          {user.playlist.length > 0 && (
+  <Box className="playlist">
+    {user.playlist.map((element) => (
+      <Box  key={element.course}>
+        <img src={element.poster} alt="Course Poster" />
+
+        <Box display={"flex"} justifyContent={"space-between"}>
+          <Link href={`/course/${element.course}`} underline="none">
+            <Button variant="outlined" color="secondary">
+              Watch Now
+            </Button>
+          </Link>
+
+          <Button onClick={() => removeFromPlaylistHandler(element.course)}>
+            delete
+          </Button>
+        </Box>
+      </Box>
+    ))}
+  </Box>
+)}
+          </Box>
         </Box>
       </Box>
     </Box>

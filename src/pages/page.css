@@ -139,3 +139,16 @@
   z-index: 5000;
   
 }
+
+.playlist{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 50px;
+}
+
+.playlist img{
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center center;
+}

@@ -91,6 +91,7 @@ const Header = () => {
 
         <Box display="flex" alignItems="center">
         {isAuthenticated ? (
+          <Link to="/profile">
           <Button
           variant="contained"
           startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
@@ -103,7 +104,10 @@ const Header = () => {
         >
           Profile
         </Button>
-        ):( <Button
+        </Link>
+        ):( 
+          <Link to="/login">
+        <Button
           variant="contained"
           startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
           color="secondary"
@@ -114,7 +118,9 @@ const Header = () => {
           }}
         >
           Login
-        </Button>)}
+        </Button>
+        </Link>)}
+        
            
             <Box className="mobMenu">
               <MenuIcon onClick={handleMenuClick} />

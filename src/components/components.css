@@ -110,7 +110,10 @@
     font-size: 15px;
 }
 
-
+.leacture-box:hover{
+    color: var(--main-color);
+    cursor: pointer;
+}
 .leacture-box img{
     width: 120px;
     height: 80px;

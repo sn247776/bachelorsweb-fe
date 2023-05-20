@@ -7,6 +7,7 @@ import Shape from "../../assets/hero/shape.png";
 import Shape1 from "../../assets/hero/shape1.png";
 import Shape2 from "../../assets/hero/shape-2.png";
 import "./home.css";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
@@ -23,6 +24,7 @@ function Hero() {
                 Discover the possibilities of online education and unlock your
                 true potential! Expand your mind with online education.
               </p>
+              <Link to="/courses">
               <Button
                 variant="contained"
                 color="secondary"
@@ -35,6 +37,7 @@ function Hero() {
               >
                 Explore our Courses
               </Button>
+              </Link>
             </Box>
           </Box>
           <Box className="hero-img">
