@@ -7,7 +7,7 @@ import SlideImg2 from "../../assets/slide2.png";
 import Quote from "../../assets/quote.png"
 function Slider() {
   return (
-    <Box width={"50vw"} maxWidth={"600px"} textAlign={"left"}>
+    <Box width={"100vw"} maxWidth={"600px"} textAlign={"left"} p={2}>
       <Carousel itemsToShow={1} enableAutoPlay autoPlaySpeed={15000} >
         <div className="slides">
             <img src={Quote}/>

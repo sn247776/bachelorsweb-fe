@@ -10,7 +10,7 @@ function Home() {
   return (
     <Box>
         <Hero/>
-        <Popular/>
+         <Popular/>
         <StudentReviews/>
         <Footer/>
     </Box>

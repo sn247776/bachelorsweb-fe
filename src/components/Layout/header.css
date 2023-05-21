@@ -1,0 +1,53 @@
+.navbar span {
+  cursor: pointer;
+    padding: 0 10px;
+    font-weight: 500;
+  }
+  
+  .navbar {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 999;
+  }
+
+  .mob-links{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+  
+  .mob-navbar{
+    transform: translateY(-110%);
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 5000;
+    transition: transform .5s ease;
+  }
+  
+  .open{
+    transform: translateY(0);
+  }
+    
+    .mob-navbar span{
+      margin: 15px 0;
+    }
+  
+  @media screen and (max-width: 800px) {
+    .navbar span {
+      display: none;
+    }
+
+    .navbar button{
+      display: none;
+    }
+
+  }
+  @media screen and (min-width: 801px) {
+      .mobMenu {
+        display: none;
+      }
+    }

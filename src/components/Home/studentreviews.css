@@ -1,0 +1,68 @@
+
+.reviews-main {
+  background-image: url(../../assets/hero/hero-bg.jpg);
+  background-size: cover;
+  min-height: calc(100vh - 80px);
+  padding: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.review-grid {
+  text-align: right;
+}
+
+.slides p {
+  font-size: 24px;
+  line-height: 36px;
+  color: #6f6b80;
+  font-weight: 500;
+  margin: 50px 0;
+}
+
+.slides h3 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+.slides h4 {
+  color: #525fe1;
+  font-size: 16px;
+  line-height: 26px;
+}
+@media screen and (max-width: 1200px) {
+  .review-grid {
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 50px;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+
+  .slides p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+}
+
+
+@media screen and (max-width: 550px) {
+  .review-img img{
+    width: 90vw;
+  }
+}

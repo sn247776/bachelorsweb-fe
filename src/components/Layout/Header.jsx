@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Box, IconButton, useTheme, Button } from "@mui/material";
-
 import { tokens } from "../../theme";
-
 import PersonIcon from "@mui/icons-material/Person";
 import Logo from "../../assets/logo.png";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useUserSelector } from "../../App";
+import "./header.css";
 
 const Header = () => {
   const { isAuthenticated } = useUserSelector();
@@ -36,9 +35,13 @@ const Header = () => {
 
   const mobLinkStyles = ({ isActive }) => {
     return {
-      color: colors.link[500],
-      borderBottom: isActive ? "2px solid" : "none",
+      color: "white",
+      fontWeight: "600",
+      fontWeight: isActive ? "900" : "none",
       textDecoration: "none",
+      fontSize: "28px",
+
+      margin: "10px 0",
     };
   };
 
@@ -90,74 +93,86 @@ const Header = () => {
         </Box>
 
         <Box display="flex" alignItems="center">
-        {isAuthenticated ? (
-          <Link to="/profile">
-          <Button
-          variant="contained"
-          startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
-          color="secondary"
-          sx={{
-            fontWeight: 600,
-            padding: "8px 12px",
-            textTransform: "none",
-          }}
-        >
-          Profile
-        </Button>
-        </Link>
-        ):( 
-          <Link to="/login">
-        <Button
-          variant="contained"
-          startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
-          color="secondary"
-          sx={{
-            fontWeight: 600,
-            padding: "8px 12px",
-            textTransform: "none",
-          }}
-        >
-          Login
-        </Button>
-        </Link>)}
-        
-           
-            <Box className="mobMenu">
-              <MenuIcon onClick={handleMenuClick} />
-            </Box>
-         
+          {isAuthenticated ? (
+            <Link to="/profile">
+              <Button
+                variant="contained"
+                startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
+                color="secondary"
+                sx={{
+                  fontWeight: 600,
+                  padding: "8px 12px",
+                  textTransform: "none",
+                }}
+              >
+                Profile
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button
+                variant="contained"
+                startIcon={<PersonIcon sx={{ margin: "0 -8px" }} />}
+                color="secondary"
+                sx={{
+                  fontWeight: 600,
+                  padding: "8px 12px",
+                  textTransform: "none",
+                }}
+              >
+                Login
+              </Button>
+            </Link>
+          )}
+
+          <Box className="mobMenu">
+            <MenuIcon onClick={handleMenuClick} fontSize="large" />
+          </Box>
         </Box>
       </Box>
       <Box
-        className={menuOpen ? "mob-navbar" : "mob-navbar open"}
-        bgcolor={"white"}
+        className={menuOpen ? "mob-navbar open" : "mob-navbar"}
+        onClick={handleMenuClick}
       >
-        <Box textAlign="right">
-          <IconButton onClick={handleMenuClick}>
-            <CloseIcon  />
-          </IconButton>
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <NavLink style={mobLinkStyles} to="/">
-            <span>HOME</span>
-          </NavLink>
-          <NavLink style={mobLinkStyles} to="/about">
-            <span>ABOUT</span>
-          </NavLink>
-          <NavLink style={mobLinkStyles} to="/course">
-            <span>COURSE</span>
-          </NavLink>
-          <NavLink style={mobLinkStyles} to="/gallery">
-            <span>GALLERY</span>
-          </NavLink>
-          <NavLink style={mobLinkStyles} to="/contact">
-            <span>CONTACT US</span>
-          </NavLink>
+        <Box bgcolor={"var(--main-color)"}>
+          <Box textAlign="right">
+            <Box onClick={handleMenuClick} p={2} color={"white"}>
+              <CloseIcon fontSize="large" />
+            </Box>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+            alignItems="center"
+            p={"50px 0px"}
+          >
+            <NavLink style={mobLinkStyles} to="/">
+              <span>HOME</span>
+            </NavLink>
+            {isAuthenticated ? (
+              <Box className="mob-links">
+                <NavLink style={mobLinkStyles} to="/cart">
+                  <span>CART</span>
+                </NavLink>
+                <NavLink style={mobLinkStyles} to="/order">
+                  <span>MY ORDERS</span>
+                </NavLink>
+                <NavLink style={mobLinkStyles} to="/login">
+                  <span>LOGOUT</span>
+                </NavLink>
+              </Box>
+            ) : (
+              <Box className="mob-links">
+                <NavLink style={mobLinkStyles} to="/login">
+                  <span>LOGIN</span>
+                </NavLink>
+                <NavLink style={mobLinkStyles} to="/login/new">
+                  <span>SIGN UP</span>
+                </NavLink>
+              </Box>
+            )}
+          </Box>
         </Box>
       </Box>
     </Box>

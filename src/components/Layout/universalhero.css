@@ -1,0 +1,15 @@
+.uni-bg {
+  background-image: url("../../assets/hero/hero-bg.jpg");
+}
+
+.uni-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+}
+
+.uni-title h1 {
+  font-size: 5rem;
+  font-weight: 600;
+}

@@ -9,8 +9,28 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  width: 90vw;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 3fr 1fr 1fr;
 }
+
+
+
+.footer-grid p{
+  display: flex;
+  margin: 10px 0;
+}
+
+.footer-grid1{
+  width: 20vw;
+  text-align: left;
+}
+.footer-grid3{
+  display: flex;
+  justify-content: right;
+}
+
 
 .footer h1 {
   font-size: 24px;
@@ -27,4 +47,66 @@
 .footer .logo{
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 1200px) {
+
+  .footer-grid {
+    display: grid;
+    width: 90vw;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .footer-grid1{
+    width: 30vw;}
+}
+
+@media (max-width: 900px) {
+
+  .footer-grid {
+    display: grid;
+    width: 90vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .footer-grid1{
+    width: 100%;}
+}
+
+@media (max-width: 700px) {
+
+  .footer-grid {
+    padding: 0 50px;
+    display: grid;
+    width: 100vw;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    gap: 20px;
+  }
+  .footer-grid1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-grid2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-grid3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-grid p{
+    display: flex;
+    margin: 2px 0;
+    font-size: 15px;
+  }
+  .footer h3{
+    font-size: 16px;
+  }
 }

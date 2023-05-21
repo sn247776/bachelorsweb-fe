@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import Slider from "./Slider";
 import ReviewImg from "../../assets/review.jpg";
+import "./studentreviews.css"
 
 function StudentReviews() {
   return (
