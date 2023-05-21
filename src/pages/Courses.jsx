@@ -1,9 +1,16 @@
-import { Box, Button, Paper, Avatar } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  Avatar,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UniversalHero from "../components/Layout/UniversalHero";
-import "../components/components.css";
-import "./page.css";
-// import CoursesCard from "../components/CoursesCard";
+import "./course.css";
 import Footer from "../components/Layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../redux/actions/course";
@@ -11,6 +18,7 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { loadUser } from "../redux/actions/user";
 import { addToPlaylist } from "../redux/actions/profile";
+import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 
 const CoursesCard = ({
   views,
@@ -51,28 +59,37 @@ const CoursesCard = ({
             <Box textAlign={"center"}>
               <h3>{title}</h3>
             </Box>
-            <Box my={1}>
-              <hr />
-            </Box>
+
             <Box
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"space-between"}
+            className="card-btn"
             >
+              
               <Link to={`/course/${id}`}>
-              <Button
-                variant="contained"
-                color="secondary"
-                sx={{
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  textTransform: "none",
-                }}
-              >
-                Watch Now
-              </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<PlayCircleFilledWhiteIcon />}
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    textTransform: "none",
+                    width:"130px",
+                    height:"40px"
+                  }}
+                >
+                  Watch Now
+                </Button>
               </Link>
-              <Button  onClick={() => addToPlaylistHandler(id)} >Add to playlist</Button>
+              <Button onClick={() => addToPlaylistHandler(id)} variant="text"
+                  color="secondary"  sx={{
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    textTransform: "none",
+                    width:"130px",
+                    height:"40px"
+                  }}>
+                Add to playlist
+              </Button>
             </Box>
           </Box>
         </Box>
@@ -83,19 +100,11 @@ const CoursesCard = ({
 };
 
 const Courses = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
   // imp work started from the here
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
-  const addToPlaylistHandler = async couseId => {
+  const addToPlaylistHandler = async (couseId) => {
     await dispatch(addToPlaylist(couseId));
     dispatch(loadUser());
   };
@@ -130,33 +139,7 @@ const Courses = () => {
     <Box>
       <UniversalHero title="Our Courses" />
 
-      <Box display={"flex"} justifyContent={"center"}>
-        <Box height={"150px"}>
-          <Box
-            className={`scrollable-div ${isHovered ? "hovered" : ""}`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            {categories.map((item, index) => (
-              <Button
-                key={index}
-                onClick={() => setCategory(item)}
-                variant="contained"
-                color="secondary"
-                sx={{
-                  fontWeight: 600,
-
-                  margin: "0 10px",
-                  textTransform: "none",
-                }}
-              >
-                {item}
-              </Button>
-            ))}
-          </Box>
-        </Box>
-      </Box>
-
+      <Box className="search-dropdown">
       <Box className="course-search">
         <input
           placeholder="Search course..."
@@ -164,6 +147,25 @@ const Courses = () => {
           type="text"
           onChange={(e) => setKeyword(e.target.value)}
         />
+      </Box>
+      <Box width={"100%"}>
+        <FormControl fullWidth color="secondary" variant="filled">
+          <InputLabel>Select a category</InputLabel>
+          <Select
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}
+          >
+            <MenuItem value="">
+              <em>Select a category</em>
+            </MenuItem>
+            {categories.map((item, index) => (
+              <MenuItem key={index} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
       </Box>
 
       <Box px={5} className="course-grid">
@@ -184,7 +186,7 @@ const Courses = () => {
             />
           ))
         ) : (
-          <h1>"Courses Not Found"</h1>
+          <Box height={"60vh"} textAlign={"center"} my={"50px"}><h1>"Courses Not Found"</h1></Box>
         )}
       </Box>
       <Footer />

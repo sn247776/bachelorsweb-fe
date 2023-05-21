@@ -1,0 +1,24 @@
+
+.leacture-box{
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 15px;
+}
+
+.leacture-box:hover{
+    color: var(--main-color);
+    cursor: pointer;
+}
+.leacture-box img{
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    object-position: center center;
+    margin-right: 15px;
+}
+
+.leacture-box h3{
+    font-size: 18px
+}

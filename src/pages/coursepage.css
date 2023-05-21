@@ -1,0 +1,88 @@
+.course-page{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  margin: 10px 50px;
+  gap: 20px;
+  justify-content: center;
+  
+}
+
+.course-page video{
+  height: 70vh;
+}
+
+.leactures-list{
+  height: 70vh;
+  overflow: auto;
+}
+
+
+@media screen and (max-width: 1500px) {
+
+  .course-page video{
+    height: 50vh;
+  }
+  
+  .leactures-list{
+    height: 50vh;
+    overflow: auto;
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+  .course-page video{
+    height: 40vh;
+  }
+  
+  .leactures-list{
+    height: 40vh;
+    overflow: auto;
+  }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+  .course-page{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 10px 50px;
+    gap: 20px;
+    justify-content: center;
+    
+  }
+  
+  .course-page video{
+    height: 100%;
+  }
+  
+  .leactures-list{
+    height: 40vh;
+    overflow: auto;
+  }
+
+  .course-page h1{
+    font-size: 1.5rem;
+  }
+
+  .desc{
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.3rem;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  .course-page{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 10px;
+    gap: 20px;
+    justify-content: center;
+    
+  }
+}

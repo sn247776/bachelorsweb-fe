@@ -145,33 +145,35 @@ const Header = () => {
             flexDirection="column"
             justifyContent="space-between"
             alignItems="center"
-            p={"50px 0px"}
+            pb={"50px"}
           >
             <NavLink style={mobLinkStyles} to="/">
               <span>HOME</span>
             </NavLink>
+            <NavLink style={mobLinkStyles} to="/courses">
+                  <span>COURSES</span>
+                </NavLink>
             {isAuthenticated ? (
               <Box className="mob-links">
-                <NavLink style={mobLinkStyles} to="/cart">
-                  <span>CART</span>
+                <NavLink style={mobLinkStyles} to="/profile">
+                  <span>PROFILE</span>
                 </NavLink>
-                <NavLink style={mobLinkStyles} to="/order">
-                  <span>MY ORDERS</span>
-                </NavLink>
-                <NavLink style={mobLinkStyles} to="/login">
-                  <span>LOGOUT</span>
-                </NavLink>
+
               </Box>
             ) : (
               <Box className="mob-links">
                 <NavLink style={mobLinkStyles} to="/login">
                   <span>LOGIN</span>
                 </NavLink>
-                <NavLink style={mobLinkStyles} to="/login/new">
-                  <span>SIGN UP</span>
-                </NavLink>
+
               </Box>
             )}
+<NavLink style={mobLinkStyles} to="/about">
+                  <span>ABOUT</span>
+                </NavLink>
+                <NavLink style={mobLinkStyles} to="/contact">
+                  <span>CONTACT US</span>
+                </NavLink>
           </Box>
         </Box>
       </Box>

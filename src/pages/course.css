@@ -1,0 +1,125 @@
+.search-dropdown {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  margin: 50px;
+}
+
+.course-search {
+  display: flex;
+}
+
+.course-search input {
+  max-width: 300px;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.course-search input::placeholder {
+  letter-spacing: 2px;
+  color: black;
+}
+
+.course-grid {
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 400px);
+  justify-content: center;
+  gap: 50px;
+}
+
+
+
+.card-btn{
+    position: absolute;
+    bottom: 20px;
+    width: 380px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media screen and (max-width: 500px) {
+    .course-grid {
+        margin: 0px 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 300px);
+        justify-content: center;
+        gap: 50px;
+      }
+
+      .card-btn{
+        position: absolute;
+        bottom: 20px;
+        width: 280px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.courses-card {
+  position: relative;
+}
+
+.course-card-main {
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card-main img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.course-card-main h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.course-card-main h5 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.course-card-main p {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.cat-box {
+  position: absolute;
+  background-color: var(--main-color);
+  padding: 5px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border: 2px solid white;
+  top: 230px;
+  left: 15px;
+  z-index: 1;
+}
+
+.course-card h5 {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 700;
+  margin: 10px 0px;
+}
+
+@media screen and (max-width: 750px) {
+  .search-dropdown {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 300px;
+    margin: 20px 0;
+    gap: 10px;
+  }
+}

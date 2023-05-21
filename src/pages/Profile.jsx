@@ -1,20 +1,26 @@
-import { Avatar, Box, Button,CircularProgress   } from "@mui/material";
+import { Avatar, Box, Button, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UniversalHero from "../components/Layout/UniversalHero";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelSubscription, loadUser, logout } from "../redux/actions/user";
 import { Link } from "react-router-dom";
-import { removeFromPlaylist, updateProfilePicture } from "../redux/actions/profile";
+import {
+  removeFromPlaylist,
+  updateProfilePicture,
+} from "../redux/actions/profile";
 import { toast } from "react-hot-toast";
+import "./profile.css";
+import DeleteIcon from '@mui/icons-material/Delete';
+import Footer from "../components/Layout/Footer";
 
 function Profile({ user }) {
   const dispatch = useDispatch();
-  const { loading, message, error } = useSelector(state => state.profile);
+  const { loading, message, error } = useSelector((state) => state.profile);
   const {
     loading: subscriptionLoading,
     message: subscriptionMessage,
     error: subscriptionError,
-  } = useSelector(state => state.subscription);
+  } = useSelector((state) => state.subscription);
   const [image, setImage] = useState("");
   const [imagePrev, setImagePrev] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +43,7 @@ function Profile({ user }) {
     };
   };
 
-  const removeFromPlaylistHandler = async id => {
+  const removeFromPlaylistHandler = async (id) => {
     await dispatch(removeFromPlaylist(id));
     dispatch(loadUser());
   };
@@ -46,7 +52,7 @@ function Profile({ user }) {
     e.preventDefault();
     const myForm = new FormData();
     myForm.append("file", image);
-    setIsLoading(true)
+    setIsLoading(true);
     await dispatch(updateProfilePicture(myForm));
     dispatch(loadUser());
   };
@@ -61,25 +67,24 @@ function Profile({ user }) {
   useEffect(() => {
     if (error) {
       toast.error(error);
-      dispatch({ type: 'clearError' });
+      dispatch({ type: "clearError" });
     }
     if (message) {
       toast.success(message);
-      dispatch({ type: 'clearMessage' });
+      dispatch({ type: "clearMessage" });
     }
     if (subscriptionMessage) {
       toast.success(subscriptionMessage);
-      dispatch({ type: 'clearMessage' });
+      dispatch({ type: "clearMessage" });
       dispatch(loadUser());
     }
 
     if (subscriptionError) {
       toast.error(subscriptionError);
-      dispatch({ type: 'clearError' });
+      dispatch({ type: "clearError" });
     }
   }, [dispatch, error, message, subscriptionError, subscriptionMessage]);
-    
-  
+
   return (
     <Box>
       <Box className="update-profile-pic" display={changephoto ? "" : "none"}>
@@ -121,11 +126,15 @@ function Profile({ user }) {
                       fontWeight: 500,
                       fontSize: "16px",
                       textTransform: "none",
-                      width:"120px",
-                      height:"40px"
+                      width: "120px",
+                      height: "40px",
                     }}
                   >
-                    {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Change'}
+                    {isLoading ? (
+                      <CircularProgress size={24} color="inherit" />
+                    ) : (
+                      "Change"
+                    )}
                   </Button>
                 </Box>
 
@@ -137,11 +146,9 @@ function Profile({ user }) {
                   width={"100%"}
                 >
                   <Button
-               
                     variant="outlined"
                     color="secondary"
                     onClick={handleClick}
-                
                     sx={{
                       fontWeight: 500,
                       fontSize: "16px",
@@ -208,10 +215,7 @@ function Profile({ user }) {
                   </p>
                   {user.subscription &&
                   user.subscription.status === "active" ? (
-                    <Button
-                   
-                    onClick={cancelSubscriptionHandler}
-                    >
+                    <Button onClick={cancelSubscriptionHandler}>
                       Cancel Subscription
                     </Button>
                   ) : (
@@ -243,7 +247,9 @@ function Profile({ user }) {
                     fontWeight: 600,
                     fontSize: "14px",
                     textTransform: "none",
-                    marginRight: "2px",
+                    margin: "2px",
+                    width:"150px",
+                  height:"40px"
                   }}
                 >
                   Update Profile
@@ -256,7 +262,9 @@ function Profile({ user }) {
                   fontWeight: 600,
                   fontSize: "14px",
                   textTransform: "none",
-                  marginLeft: "2px",
+                  margin: "2px",
+                  width:"150px",
+                  height:"40px"
                 }}
               >
                 Change Password
@@ -270,40 +278,79 @@ function Profile({ user }) {
                 fontWeight: 600,
                 fontSize: "14px",
                 textTransform: "none",
-                marginLeft: "2px",
+                margin: "2px",
+                width:"150px",
+                  height:"40px"
               }}
             >
               Logout
             </Button>
-          </Box>
-        </Box>
-        <Box >
-          <h1>Playlist</h1>
-          <Box >
-          {user.playlist.length > 0 && (
-  <Box className="playlist">
-    {user.playlist.map((element) => (
-      <Box  key={element.course}>
-        <img src={element.poster} alt="Course Poster" />
-
-        <Box display={"flex"} justifyContent={"space-between"}>
-          <Link href={`/course/${element.course}`} underline="none">
-            <Button variant="outlined" color="secondary">
-              Watch Now
+            <Button
+              onClick={logoutHandler}
+              variant="contained"
+              color="error"
+              sx={{
+                fontWeight: 600,
+                fontSize: "14px",
+                textTransform: "none",
+                margin: "2px",
+                width:"150px",
+                  height:"40px"
+              }}
+            >
+              Delete Account
             </Button>
-          </Link>
-
-          <Button onClick={() => removeFromPlaylistHandler(element.course)}>
-            delete
-          </Button>
+          </Box>
         </Box>
-      </Box>
-    ))}
-  </Box>
-)}
+        <Box>
+          <h1>Playlist</h1>
+          <Box>
+            {user.playlist.length > 0 && (
+              <Box className="playlist">
+                {user.playlist.map((element) => (
+                  <Box key={element.course}>
+                    <img src={element.poster} alt="Course Poster" />
+
+                    <Box display={"flex"} justifyContent={"space-between"}>
+                      <Link href={`/course/${element.course}`} underline="none">
+                        <Button variant="outlined" color="secondary" sx={{
+                          fontWeight: 600,
+                          fontSize: "14px",
+                          textTransform: "none",
+                          width:"105px",
+                            height:"40px"
+                        }}>
+                          Watch Now
+                        </Button>
+                      </Link>
+
+                      <Button
+                      startIcon={<DeleteIcon />}
+                      color="error"
+                      variant="outlined"
+                        onClick={() =>
+                          removeFromPlaylistHandler(element.course)
+                        }
+                        sx={{
+                          fontWeight: 600,
+                          fontSize: "14px",
+                          textTransform: "none",
+                          width:"105px",
+                            height:"40px"
+                        }}
+                      >
+                       Delete
+                      </Button>
+                      
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>
+      <Footer />
     </Box>
   );
 }

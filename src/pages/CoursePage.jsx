@@ -7,6 +7,7 @@ import Loading from "../components/Layout/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import { getCourseLectures } from "../redux/actions/course";
+import "./coursepage.css"
 
 function CoursePage({ user }) {
   const [lectureNumber, setLectureNumber] = useState(0);
@@ -60,12 +61,12 @@ function CoursePage({ user }) {
               </Box>
             </Box>
           </Box>
-          <Box mx={"50px"} mb={"50px"} className="course-page">
+          <Box mx={"30px"} mb={"50px"} width={"90vw"}>
             <Box>
               <h1>
                 {lectureNumber + 1} {lectures[lectureNumber].title}
               </h1>
-              <p>{lectures[lectureNumber].description}</p>
+              <p className="desc">{lectures[lectureNumber].description}</p>
             </Box>
           </Box>
         </Box>

@@ -6,6 +6,7 @@ import girlImg from "../assets/girl-img.webp";
 import Footer from "../components/Layout/Footer";
 import CenterGrid from "../components/CenterGrid";
 import { Link } from "react-router-dom";
+import "./about.css"
 
 function About() {
   return (
@@ -43,7 +44,7 @@ function About() {
       </Box>
       <Box className="about-center">
         <Box>
-        <Box py={"50px"}>
+        <Box p={"50px"}>
             <h1>The Executive Team</h1>
             <p>There's nothing I really wanted to do in life that I wasn't able to get good at. That's my skill.</p>
         </Box>

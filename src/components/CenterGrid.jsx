@@ -1,11 +1,12 @@
 import { Box, Paper } from '@mui/material'
 import React from 'react'
+import "./centergrid.css"
 
 function CenterGrid() {
   return (
     <Paper className="center-grid-comp">
 
-        <Box width={"450px"}></Box>
+        <Box className="space"></Box>
        
         <Box>
             <img src='https://demos.creative-tim.com/otis-kit-pro/static/media/ivana-squares.3c555b856b04c2ab921b.jpg' alt='girl'/>
