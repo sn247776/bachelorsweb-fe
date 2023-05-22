@@ -7,7 +7,7 @@ function Leacture(props) {
   return (
     <Box className="leacture-box">
         <Box>
-        <img src={props.poster || ImgLec} alt='lect-img' />
+        <img src={props.poster.url || ImgLec} alt='lect-img' />
         </Box>
         <Box>
             <h3>#{props.index} {props.title}</h3>
