@@ -3,7 +3,7 @@ import { profileReducer, subscriptionReducer, userReducer } from "./reducers/use
 import { courseReducer } from "./reducers/courseReducer";
 import { otherReducer } from './reducers/otherReducer';
 
-export const server = "http://localhost:5000/api/v1";
+export const server = "https://odd-plum-coyote-tutu.cyclic.app";
 
 const store = configureStore({
   reducer: {
