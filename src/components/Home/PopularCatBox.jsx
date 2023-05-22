@@ -1,24 +1,26 @@
 import { Box} from "@mui/material";
 import React from "react";
-import CalculateIcon from '@mui/icons-material/CalculateOutlined';
+import {Link} from "react-router-dom"
 
-function PopularCatBox() {
+function PopularCatBox(props) {
   return (
     
     <Box className="popularcat">
 
         <Box className="popularcat-main">
             <Box>
-            <CalculateIcon fontSize="large" color="secondary"/>
+            {props.icon}
             </Box>
-          <h5>Lifestyle</h5>
-          <p>Embrace nature for a more peaceful lifestyle.</p>
+          <h5>{props.name}</h5>
+          <p>{props.description}</p>
         </Box>
-        <Box className="popularcat-hover">
-          <p>7 Course</p>
-          <h5>Lifestyle</h5>
-          <p>Embrace nature for a more peaceful lifestyle.</p>
-        </Box>
+      <Link to="/courses">
+      <Box className="popularcat-hover">
+        
+        <h5>{props.name}</h5>
+        <p>{props.description}</p>
+      </Box>
+      </Link>
 
     </Box>
     

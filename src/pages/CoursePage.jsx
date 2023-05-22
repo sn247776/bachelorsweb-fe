@@ -22,6 +22,7 @@ function CoursePage({ user }) {
   const lecturesData = lectures.lectures;
 
   const lecturesPoster = lectures.poster;
+  const lecturesCreater = lectures.createdBy;
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -80,7 +81,9 @@ function CoursePage({ user }) {
                     style={lectureNumber === index ? { backgroundColor: "#525ee15b", } : {}}
                   >
                     <Leacture title={element.title} index={index + 1} 
-                    poster={lecturesPoster}  
+                    poster={lecturesPoster} 
+                    createdBy={lecturesCreater}
+
                     />
                   </Box>
                 ))}

@@ -165,7 +165,7 @@ function Profile({ user }) {
       </Box>
 
       <UniversalHero title="Profile" />
-      <Box m={"50px"}>
+      <Box m={"50px"} minHeight={"70vh"}>
         <Box className="profile">
           <Box
             display={"flex"}
@@ -303,10 +303,13 @@ function Profile({ user }) {
           </Box>
         </Box>
         <Box>
-          <h1>Playlist</h1>
+          
           <Box>
             {user.playlist.length > 0 && (
-              <Box className="playlist">
+              <Box>
+                <h1>Playlist</h1>
+<Box className="playlist">
+                
                 {user.playlist.map((element) => (
                   <Box key={element.course}>
                     <img src={element.poster} alt="Course Poster" />
@@ -345,6 +348,7 @@ function Profile({ user }) {
                     </Box>
                   </Box>
                 ))}
+              </Box>
               </Box>
             )}
           </Box>

@@ -11,7 +11,7 @@ function Leacture(props) {
         </Box>
         <Box>
             <h3>#{props.index} {props.title}</h3>
-            <p>Sagar Nirwal</p>
+            <p>{props.createdBy}</p>
         </Box>
     </Box>
   )

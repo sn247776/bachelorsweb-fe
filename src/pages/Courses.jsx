@@ -19,6 +19,8 @@ import { Link } from "react-router-dom";
 import { loadUser } from "../redux/actions/user";
 import { addToPlaylist } from "../redux/actions/profile";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import LoginIcon from '@mui/icons-material/Login';
+import { useUserSelector } from "../App";
 
 const CoursesCard = ({
   views,
@@ -32,6 +34,7 @@ const CoursesCard = ({
   lectureCount,
   loading,
 }) => {
+  const { isAuthenticated } = useUserSelector();
   return (
     <Paper>
       <Box className="courses-card" textAlign={"center"}>
@@ -63,8 +66,9 @@ const CoursesCard = ({
             <Box
             className="card-btn"
             >
-              
+              {isAuthenticated ? (
               <Link to={`/course/${id}`}>
+              
                 <Button
                   variant="contained"
                   color="secondary"
@@ -79,7 +83,26 @@ const CoursesCard = ({
                 >
                   Watch Now
                 </Button>
+                
               </Link>
+              ): (<Link to={"/login"}>
+              
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<LoginIcon />}
+                sx={{
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textTransform: "none",
+                  width:"130px",
+                  height:"40px"
+                }}
+              >
+                Login Now
+              </Button>
+              
+            </Link>)}
               <Button onClick={() => addToPlaylistHandler(id)} variant="text"
                   color="secondary"  sx={{
                     fontWeight: 600,
@@ -104,6 +127,7 @@ const Courses = () => {
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
+  
   const addToPlaylistHandler = async (couseId) => {
     await dispatch(addToPlaylist(couseId));
     dispatch(loadUser());
