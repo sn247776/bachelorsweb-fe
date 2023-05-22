@@ -1,29 +1,53 @@
+import React, { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useParams } from "react-router-dom";
+import { getCourseLectures } from "../redux/actions/course";
 import Header from "../components/Layout/Header";
 import Leacture from "../components/Leacture";
 import Footer from "../components/Layout/Footer";
 import Loading from "../components/Layout/Loading";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useParams } from "react-router-dom";
-import { getCourseLectures } from "../redux/actions/course";
-import "./coursepage.css"
+import "./coursepage.css";
 
 function CoursePage({ user }) {
   const [lectureNumber, setLectureNumber] = useState(0);
-
+  const videoRef = useRef(null);
   const { lectures, loading } = useSelector((state) => state.course);
-
   const dispatch = useDispatch();
   const params = useParams();
-
   useEffect(() => {
     dispatch(getCourseLectures(params.id));
   }, [dispatch, params.id]);
 
+  const lecturesData = lectures.lectures;
+
+  const lecturesPoster = lectures.poster.url;
+
+  console.log(lecturesPoster);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+  
+    const handleVideoEnd = () => {
+      if (lectureNumber < lecturesData.length - 1) {
+        setLectureNumber((prevLectureNumber) => prevLectureNumber + 1);
+      }
+    };
+  
+    if (videoElement) {
+      videoElement.addEventListener("ended", handleVideoEnd);
+    }
+  
+    return () => {
+      if (videoElement) {
+        videoElement.removeEventListener("ended", handleVideoEnd);
+      }
+    };
+  }, [lectureNumber, lecturesData, videoRef]);
+
   if (
     user.role !== "admin" &&
-    (user.subscription === undefined || user.subscription.status !== "active")
+    (!user.subscription || user.subscription.status !== "active")
   ) {
     return <Navigate to={"/subscribe"} />;
   }
@@ -35,27 +59,29 @@ function CoursePage({ user }) {
       <Box height={"80px"}>
         <Header />
       </Box>
-      {lectures && lectures.length > 0 ? (
+      {lecturesData && lecturesData.length > 0 ? (
         <Box>
           <Box className="course-page">
             <Box>
               <video
+                ref={videoRef}
                 width={"100%"}
+                autoPlay
                 controls
                 controlsList="nodownload noremoteplayback"
-                disablePictureInPicture
-                disableRemotePlayback
-                src={lectures[lectureNumber]?.video?.url}
+                src={lecturesData[lectureNumber]?.video?.url}
               />
             </Box>
             <Box>
-              <Box className="leactures-list">
-                {lectures.map((element, index) => (
+            <Box className="leactures-list">
+                {lecturesData.map((element, index) => (
                   <Box
+     
                     onClick={() => setLectureNumber(index)}
                     key={element._id}
+                    style={lectureNumber === index ? { backgroundColor: "#525ee15b", } : {}}
                   >
-                    <Leacture title={element.title} index={index + 1} />
+                    <Leacture title={element.title} index={index + 1} poster={lecturesPoster}  />
                   </Box>
                 ))}
               </Box>
@@ -64,9 +90,9 @@ function CoursePage({ user }) {
           <Box mx={"30px"} mb={"50px"} width={"90vw"}>
             <Box>
               <h1>
-                {lectureNumber + 1} {lectures[lectureNumber].title}
+                {lectureNumber + 1} {lecturesData[lectureNumber].title}
               </h1>
-              <p className="desc">{lectures[lectureNumber].description}</p>
+              <p className="desc">{lecturesData[lectureNumber].description}</p>
             </Box>
           </Box>
         </Box>

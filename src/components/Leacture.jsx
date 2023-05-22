@@ -1,13 +1,12 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import ImgLec from "../assets/course-grid.webp"
 import "./leacture.css"
 
 function Leacture(props) {
   return (
     <Box className="leacture-box">
         <Box>
-            <img src={ImgLec} alt='lect-img'/>
+            <img src={props.poster} alt='lect-img'/>
         </Box>
         <Box>
             <h3>#{props.index} {props.title}</h3>
