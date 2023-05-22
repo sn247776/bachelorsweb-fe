@@ -21,9 +21,7 @@ function CoursePage({ user }) {
 
   const lecturesData = lectures.lectures;
 
-  const lecturesPoster = lectures.poster.url;
-
-  console.log(lecturesPoster);
+  // const lecturesPoster = lectures.poster.url;
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -81,7 +79,9 @@ function CoursePage({ user }) {
                     key={element._id}
                     style={lectureNumber === index ? { backgroundColor: "#525ee15b", } : {}}
                   >
-                    <Leacture title={element.title} index={index + 1} poster={lecturesPoster}  />
+                    <Leacture title={element.title} index={index + 1} 
+                    // poster={lecturesPoster}  
+                    />
                   </Box>
                 ))}
               </Box>
