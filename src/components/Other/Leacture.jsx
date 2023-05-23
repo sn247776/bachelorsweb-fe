@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import ImgLec from "../assets/course-grid.webp"
+import ImgLec from "../../assets/course-grid.webp"
 import "./leacture.css"
 
 function Leacture(props) {

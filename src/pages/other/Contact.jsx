@@ -5,10 +5,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
-import UniversalHero from "../components/Layout/UniversalHero";
+import UniversalHero from "../../components/Layout/UniversalHero";
+import Footer from "../../components/Layout/Footer";
 
-export default function RequestCourse() {
+export default function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -20,7 +22,7 @@ export default function RequestCourse() {
 
   return (
     <Box>
-      <UniversalHero title="Course Request" />
+      <UniversalHero title="Contact Us" />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -33,8 +35,8 @@ export default function RequestCourse() {
         >
           <Box textAlign={"center"}>
             <p>
-              Ready to level up your skills? Fill out the form below and let us
-              know which course you wants.
+              We're just a click away! Reach out to us and let's start a
+              conversation that will make a difference.
             </p>
           </Box>
           <Box
@@ -63,7 +65,6 @@ export default function RequestCourse() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              
               color="secondary"
               variant="filled"
             />
@@ -72,14 +73,12 @@ export default function RequestCourse() {
               margin="normal"
               required
               fullWidth
-              id="course"
-              label="Course"
-              name="course"
-              autoComplete="course"
-              placeholder="Explain the course"
+              id="message"
+              label="Message"
+              name="message"
+              autoComplete="message"
               multiline
               rows={3}
-              
               color="secondary"
               variant="filled"
             />
@@ -101,12 +100,15 @@ export default function RequestCourse() {
             </Button>
             <Box textAlign="center">
               <Link href="#" variant="body2" color="secondary">
-                Available courses
+                Request a course
               </Link>
             </Box>
           </Box>
         </Box>
       </Container>
+      <Box mt={5}>
+      <Footer/>
+      </Box>
     </Box>
   );
 }

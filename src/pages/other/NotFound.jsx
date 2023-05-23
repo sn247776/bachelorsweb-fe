@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
-import Header from "../components/Layout/Header";
-import NotFoundImg from "../assets/404.png"
+import Header from "../../components/Layout/Header";
+import NotFoundImg from "../../assets/404.png"
 function NotFound() {
   return (
     <Box>

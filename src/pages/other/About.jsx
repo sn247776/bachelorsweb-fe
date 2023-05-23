@@ -1,10 +1,10 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
-import UniversalHero from "../components/Layout/UniversalHero";
-import snImg from "../assets/profile-pic.png";
-import girlImg from "../assets/girl-img.webp";
-import Footer from "../components/Layout/Footer";
-import CenterGrid from "../components/CenterGrid";
+import UniversalHero from "../../components/Layout/UniversalHero";
+import snImg from "../../assets/profile-pic.png";
+import girlImg from "../../assets/girl-img.webp";
+import Footer from "../../components/Layout/Footer";
+import CenterGrid from "../../components/Other/CenterGrid";
 import { Link } from "react-router-dom";
 import "./about.css"
 

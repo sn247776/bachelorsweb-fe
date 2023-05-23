@@ -45,7 +45,7 @@
   
   
   .about-center{
-      background-image: url(../assets/about-center.jpg);
+      background-image: url(../../assets/about-center.jpg);
       background-size: cover;
       min-height: 60vh;
       padding: 50px;

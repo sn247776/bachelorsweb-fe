@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Header from '../../components/Layout/Header';
 import bgImg from "../../assets/bg-login.png"
+import { NavLink } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -22,6 +23,11 @@ export default function Login() {
   const submitHandler = e => {
     e.preventDefault();
     dispatch(login(email, password));
+  };
+
+  const linkStyle = {
+    textDecoration: "none",
+    color: "var(--main-color)",
   };
 
   return (
@@ -114,14 +120,14 @@ export default function Login() {
               </form>
               <Grid container>
                 <Grid item xs>
-                  <Link href="/forgot" variant="body2" color={"secondary"}>
+                  <NavLink to="/forgot"style={linkStyle}>
                     Forgot password?
-                  </Link>
+                  </NavLink>
                 </Grid>
                 <Grid item>
-                  <Link href="/signup" variant="body2" color={"secondary"}>
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                  <NavLink to="/signup" style={linkStyle}>
+                    {"Need account? Sign Up"}
+                  </NavLink>
                 </Grid>
               </Grid>
             </Box>

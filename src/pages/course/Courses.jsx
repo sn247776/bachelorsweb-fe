@@ -9,18 +9,18 @@ import {
   MenuItem,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import UniversalHero from "../components/Layout/UniversalHero";
+import UniversalHero from "../../components/Layout/UniversalHero";
 import "./course.css";
-import Footer from "../components/Layout/Footer";
+import Footer from "../../components/Layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses } from "../redux/actions/course";
+import { getAllCourses } from "../../redux/actions/course";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { loadUser } from "../redux/actions/user";
-import { addToPlaylist } from "../redux/actions/profile";
+import { loadUser } from "../../redux/actions/user";
+import { addToPlaylist } from "../../redux/actions/profile";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import LoginIcon from '@mui/icons-material/Login';
-import { useUserSelector } from "../App";
+import { useUserSelector } from "../../App";
 
 const CoursesCard = ({
   views,

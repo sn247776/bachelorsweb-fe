@@ -9,6 +9,7 @@ import Header from "../../components/Layout/Header";
 import bgImg from "../../assets/bg-sign.png"
 import { register } from "../../redux/actions/user";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 
 export default function SignUp() {
@@ -41,6 +42,11 @@ export default function SignUp() {
     myForm.append('file', image);
 
     dispatch(register(myForm));
+  };
+
+  const linkStyle = {
+    textDecoration: "none",
+    color: "white",
   };
 
   return (
@@ -128,9 +134,12 @@ export default function SignUp() {
                   color="secondary"
                   variant="filled"
                 />
+                <Box>
+                <p style={{color:"var(--text-color)", fontSize:"14px", margin:"5px 10px"}}>Profile Pic</p>
 
-                <input type="file" onChange={changeImageHandler}  accept="image/*"
-              required  id="chooseAvatar" className="upload-box" />
+<input type="file" onChange={changeImageHandler}  accept="image/*"
+required  id="chooseAvatar" className="upload-box"/>
+                </Box>
 
                 <Button
                   type="submit"
@@ -149,14 +158,12 @@ export default function SignUp() {
                 </Button>
                 <Grid container>
                   <Grid item xs>
-                    <Link href="#" variant="body2" color={"secondary"}>
-                      Our Terms of Service
-                    </Link>
+  
                   </Grid>
                   <Grid item>
-                    <Link href="#" variant="body2" color={"secondary"}>
+                    <NavLink to="/login" style={linkStyle}>
                       {"Allready have an account? Login"}
-                    </Link>
+                    </NavLink>
                   </Grid>
                 </Grid>
               </Box>

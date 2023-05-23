@@ -1,17 +1,17 @@
 import { Avatar, Box, Button, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import UniversalHero from "../components/Layout/UniversalHero";
+import UniversalHero from "../../components/Layout/UniversalHero";
 import { useDispatch, useSelector } from "react-redux";
-import { cancelSubscription, loadUser, logout } from "../redux/actions/user";
+import { cancelSubscription, loadUser, logout } from "../../redux/actions/user";
 import { Link } from "react-router-dom";
 import {
   removeFromPlaylist,
   updateProfilePicture,
-} from "../redux/actions/profile";
+} from "../../redux/actions/profile";
 import { toast } from "react-hot-toast";
 import "./profile.css";
 import DeleteIcon from '@mui/icons-material/Delete';
-import Footer from "../components/Layout/Footer";
+import Footer from "../../components/Layout/Footer";
 
 function Profile({ user }) {
   const dispatch = useDispatch();
@@ -215,8 +215,8 @@ function Profile({ user }) {
                   </p>
                   {user.subscription &&
                   user.subscription.status === "active" ? (
-                    <Button onClick={cancelSubscriptionHandler}>
-                      Cancel Subscription
+                    <Button onClick={cancelSubscriptionHandler} color="warning" variant="outlined" sx={{margin:"0px 10px"}}> 
+                      Unsubscribe
                     </Button>
                   ) : (
                     <Link to="/subscribe">
@@ -238,7 +238,7 @@ function Profile({ user }) {
                 </Box>
               )}
             </Box>
-            <Box my={2}>
+            <Box my={2} textAlign={"center"}>
               <Link to="/updateprofile">
                 <Button
                   variant="contained"
@@ -255,6 +255,7 @@ function Profile({ user }) {
                   Update Profile
                 </Button>
               </Link>
+              <Link to="/changepassword">
               <Button
                 variant="contained"
                 color="secondary"
@@ -269,7 +270,9 @@ function Profile({ user }) {
               >
                 Change Password
               </Button>
+              </Link>
             </Box>
+            <Box textAlign={"center"}>
             <Button
               onClick={logoutHandler}
               variant="contained"
@@ -300,6 +303,7 @@ function Profile({ user }) {
             >
               Delete Account
             </Button>
+            </Box>
           </Box>
         </Box>
         <Box>

@@ -1,39 +1,56 @@
-import "./App.css";
+// Dependencies Importe Here
+import React, { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { ProtectedRoute } from "protected-route-react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// MUi Components Imported Here.
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+
+// Redux Imported Here
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "./redux/actions/user";
+
+// Componets Imported Here
 import Loading from "./components/Layout/Loading";
-import Home from "./pages/Home";
-import Courses from "./pages/Courses";
+
+// Pages are Imported from the Here
+import Home from "./pages/other/Home";
+import Courses from "./pages/course/Courses";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import Forgot from "./pages/auth/Forgot";
 import ResetPassword from "./pages/auth/ResetPassword";
-import Contact from "./pages/Contact";
-import RequestCourse from "./pages/RequestCourse";
-import About from "./pages/About";
+import Contact from "./pages/other/Contact";
+import RequestCourse from "./pages/other/RequestCourse";
+import About from "./pages/other/About";
 import Subscribe from "./pages/payment/Subscribe";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/other/NotFound";
 import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFail from "./pages/payment/PaymentFail";
-import CoursePage from "./pages/CoursePage";
-import Profile from "./pages/Profile";
-import { useDispatch, useSelector } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
-import { loadUser } from "./redux/actions/user";
-import { ProtectedRoute } from "protected-route-react";
+import CoursePage from "./pages/course/CoursePage";
+import Profile from "./pages/profile/Profile";
 import UpdateProfile from "./pages/profile/UpdateProfile";
 import ChangePassword from "./pages/profile/ChangePassword";
+import Term from "./pages/other/Term";
+import Policy from "./pages/other/Policy";
 
+// its exported becouse we are fatching user information in Profile Page.
 export const useUserSelector = () => useSelector((state) => state.user);
+
 function App() {
   const [theme, colorMode] = useMode();
+
+  // Redux Work Started Here
   const { isAuthenticated, user, message, error, loading } = useSelector(
     (state) => state.user
   );
 
+  // This Redux Fucnction import the User Details and Check the all information of usere like is Logind or Not.
+  //  and send the infromation to the proteced route to block the pages user not authoursed
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -63,67 +80,43 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/courses" element={<Courses />} />
+                <Route path="/about" element={<About />} />
 
                 <Route
                   path="/course/:id"
                   element={
-                    <ProtectedRoute isAuthenticated={isAuthenticated} redirect="/login">
+                    <ProtectedRoute
+                      isAuthenticated={isAuthenticated}
+                      redirect="/login"
+                    >
                       <CoursePage user={user} />
                     </ProtectedRoute>
                   }
                 />
-                <Route path="/about" element={<About />} />
-                <Route
-                  path="/login"
-                  element={
-                    <ProtectedRoute
-                      isAuthenticated={!isAuthenticated}
-                      redirect="/profile"
-                    >
-                      <Login />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/signup"
-                  element={
-                    <ProtectedRoute
-                      isAuthenticated={!isAuthenticated}
-                      redirect="/profile"
-                    >
-                      <SignUp />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/forgot"
-                  element={
-                    <ProtectedRoute
-                      isAuthenticated={!isAuthenticated}
-                      redirect="/profile"
-                    >
-                      <Forgot />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/resetpassword/:token"
-                  element={
-                    <ProtectedRoute
-                      isAuthenticated={!isAuthenticated}
-                      redirect="/profile"
-                    >
-                      <ResetPassword />{" "}
-                    </ProtectedRoute>
-                  }
-                />
+
                 <Route
                   path="/updateprofile"
-                  element={<UpdateProfile user={user} />}
+                  element={
+                    <ProtectedRoute
+                      isAuthenticated={isAuthenticated}
+                      redirect="/login"
+                    >
+                      <UpdateProfile user={user} />
+                    </ProtectedRoute>
+                  }
                 />
-                <Route path="/changepassword" element={<ChangePassword />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/courserequest" element={<RequestCourse />} />
+                <Route
+                  path="/changepassword"
+                  element={
+                    <ProtectedRoute
+                      isAuthenticated={isAuthenticated}
+                      redirect="/profile"
+                    >
+                      <ChangePassword />
+                    </ProtectedRoute>
+                  }
+                />
+
                 <Route
                   path="/subscribe"
                   element={
@@ -140,8 +133,61 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+
+                <Route
+                  path="/login"
+                  element={
+                    <ProtectedRoute
+                      isAuthenticated={!isAuthenticated}
+                      redirect="/profile"
+                    >
+                      <Login />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/signup"
+                  element={
+                    <ProtectedRoute
+                      isAuthenticated={!isAuthenticated}
+                      redirect="/profile"
+                    >
+                      <SignUp />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/forgot"
+                  element={
+                    <ProtectedRoute
+                      isAuthenticated={!isAuthenticated}
+                      redirect="/profile"
+                    >
+                      <Forgot />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/resetpassword/:token"
+                  element={
+                    <ProtectedRoute
+                      isAuthenticated={!isAuthenticated}
+                      redirect="/profile"
+                    >
+                      <ResetPassword />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route path="/term" element={<Term />} />
+                <Route path="/policy" element={<Policy />} />
                 <Route path="/paymentsuccess" element={<PaymentSuccess />} />
                 <Route path="/paymentfail" element={<PaymentFail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/courserequest" element={<RequestCourse />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </>

@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
-import { getCourseLectures } from "../redux/actions/course";
-import Header from "../components/Layout/Header";
-import Leacture from "../components/Leacture";
-import Footer from "../components/Layout/Footer";
-import Loading from "../components/Layout/Loading";
+import { getCourseLectures } from "../../redux/actions/course";
+import Header from "../../components/Layout/Header";
+import Leacture from "../../components/Other/Leacture";
+import Footer from "../../components/Layout/Footer";
+import Loading from "../../components/Layout/Loading";
 import "./coursepage.css";
 
 function CoursePage({ user }) {
