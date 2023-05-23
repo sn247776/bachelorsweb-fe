@@ -7,6 +7,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  LinearProgress,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import UniversalHero from "../../components/Layout/UniversalHero";
@@ -210,7 +211,10 @@ const Courses = () => {
             />
           ))
         ) : (
-          <Box height={"60vh"} textAlign={"center"} my={"50px"}><h1>"Courses Not Found"</h1></Box>
+          <Box height={"60vh"} textAlign={"center"} my={"50px"}>
+            <h2>Loading...</h2>
+            <br/>
+            <LinearProgress color="secondary"/></Box>
         )}
       </Box>
       <Footer />
