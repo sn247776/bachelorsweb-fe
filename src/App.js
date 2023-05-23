@@ -36,6 +36,11 @@ import ChangePassword from "./pages/profile/ChangePassword";
 import Term from "./pages/other/Term";
 import Policy from "./pages/other/Policy";
 
+//Admin Routes
+import Dashboard from "./pages/admin/Dashboard"
+import Users from "./pages/admin/Users";
+import CreateCourse from "./pages/admin/Course/CreateCourse";
+
 // its exported becouse we are fatching user information in Profile Page.
 export const useUserSelector = () => useSelector((state) => state.user);
 
@@ -188,6 +193,14 @@ function App() {
                 <Route path="/paymentfail" element={<PaymentFail />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/courserequest" element={<RequestCourse />} />
+
+
+
+
+
+                <Route path="/admin" element={<Dashboard/>}/>
+                <Route path="/admin/user" element={<Users/>}/>
+                <Route path="/admin/create" element={<CreateCourse/>}/>
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </>

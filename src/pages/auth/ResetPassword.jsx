@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import UniversalHero from "../../components/Layout/UniversalHero";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPassword } from "../../redux/actions/profile";
 import { toast } from "react-hot-toast";
@@ -38,6 +38,11 @@ export default function ResetPassword() {
       navigate('/login');
     }
   }, [dispatch, error, message]);
+
+  const linkStyle = {
+    textDecoration: "none",
+    color: "var(--main-color)",
+  };
 
   return (
     <Box>
@@ -100,9 +105,9 @@ export default function ResetPassword() {
               Reset Password
             </Button>
             <Box textAlign="center">
-              <Link href="#" variant="body2" color="secondary">
-                Return to Login
-              </Link>
+            <NavLink to={"/login"} style={linkStyle}>
+            Return to Login
+                </NavLink>
             </Box>
           </Box>
         </Box>

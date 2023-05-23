@@ -319,7 +319,7 @@ function Profile({ user }) {
                     <img src={element.poster} alt="Course Poster" />
 
                     <Box display={"flex"} justifyContent={"space-between"}>
-                      <Link href={`/course/${element.course}`} underline="none">
+                      <Link to={`/course/${element.course}`}>
                         <Button variant="outlined" color="secondary" sx={{
                           fontWeight: 600,
                           fontSize: "14px",

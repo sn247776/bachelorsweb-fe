@@ -3,7 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
@@ -11,6 +10,7 @@ import UniversalHero from '../../components/Layout/UniversalHero';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { forgetPassword } from '../../redux/actions/profile';
+import { NavLink } from 'react-router-dom';
 
 
 export default function Forgot() {
@@ -34,6 +34,11 @@ export default function Forgot() {
       dispatch({ type: 'clearMessage' });
     }
   }, [dispatch, error, message]);
+
+  const linkStyle = {
+    textDecoration: "none",
+    color: "var(--main-color)",
+  };
 
   return (
     <Box >
@@ -91,9 +96,9 @@ export default function Forgot() {
               Send Request
             </Button>
             <Box textAlign="center">
-            <Link href="#" variant="body2" color="secondary">
+            <NavLink to={"/login"} style={linkStyle}>
             Return to Login
-                </Link>
+                </NavLink>
             </Box>
 
           </Box>
