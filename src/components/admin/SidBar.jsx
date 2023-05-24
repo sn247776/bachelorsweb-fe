@@ -108,7 +108,7 @@ const Sidebar = () => {
             />
             <Item
               title="Courses"
-              to="/invoices"
+              to="/admin/courses"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

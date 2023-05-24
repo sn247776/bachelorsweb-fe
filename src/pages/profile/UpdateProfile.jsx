@@ -37,7 +37,6 @@ export default function UpdateProfile({ user }) {
         navigate('/profile');
       toast.success(message);
       dispatch({ type: 'clearMessage' });
-
     }
   }, [dispatch, error, message]);
 
@@ -103,6 +102,7 @@ export default function UpdateProfile({ user }) {
             />
 
             <Button
+            disabled={loading}
               type="submit"
               fullWidth
               variant="contained"

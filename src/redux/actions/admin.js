@@ -77,7 +77,7 @@ export const deleteLecture = (courseId, lectureId) => async dispatch => {
     dispatch({ type: 'deleteLectureRequest' });
 
     const { data } = await axios.delete(
-      `${server}/lecture?courseId=${courseId}&lectureId=${lectureId}`,
+      `${server}/lecture-delete?courseId=${courseId}&lectureId=${lectureId}`,
       config
     );
 
