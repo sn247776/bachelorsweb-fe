@@ -1,5 +1,6 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
+import CloseIcon from '@mui/icons-material/Close';
 import "./course.css";
 
 const AdminLectures = ({
@@ -45,7 +46,7 @@ const AdminLectures = ({
         justifyContent={"space-between"}
       >
         <h3>{courseTitle}</h3>
-        <h1 onClick={handleClose}>X</h1>
+        <IconButton onClick={handleClose}><CloseIcon fontSize="large"/></IconButton>
       </Box>
       <Box className="lect-grid">
         <Box>

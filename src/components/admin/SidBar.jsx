@@ -35,7 +35,8 @@ const Sidebar = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box
+    <Box position={"sticky"} top={"0"}>
+          <Box 
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
@@ -52,9 +53,11 @@ const Sidebar = () => {
         "& .pro-menu-item.active": {
           color: "#6870fa !important",
         },
+        
       }}
-      height={"100vh"}
+
     >
+      <Box height={"100vh"} >
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
@@ -74,9 +77,9 @@ const Sidebar = () => {
                 ml="15px"
                
               >
-                <Typography>
-                  Dashboard
-                </Typography>
+                <Box fontSize={20}>
+                  Bachelors Web
+                </Box>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
@@ -116,6 +119,8 @@ const Sidebar = () => {
           </Box>
         </Menu>
       </ProSidebar>
+      </Box>
+    </Box>
     </Box>
   );
 };

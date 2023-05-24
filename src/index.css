@@ -67,3 +67,9 @@ body {
 ::-webkit-file-upload-button:hover{
   background-color: #39429d;
 }
+
+.dashgrid{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 50px;
+}
