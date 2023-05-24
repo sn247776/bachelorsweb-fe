@@ -120,6 +120,7 @@ function Profile({ user }) {
                 <Box>
                   <Button
                     type="submit"
+                    disabled={loading}
                     variant="contained"
                     color="secondary"
                     sx={{
@@ -147,6 +148,7 @@ function Profile({ user }) {
                 >
                   <Button
                     variant="outlined"
+                    disabled={loading}
                     color="secondary"
                     onClick={handleClick}
                     sx={{
@@ -184,6 +186,7 @@ function Profile({ user }) {
             <Box p={2}>
               <Button
                 type="submit"
+                disabled={loading}
                 variant="text"
                 color="secondary"
                 onClick={handleClick}
@@ -215,7 +218,7 @@ function Profile({ user }) {
                   </p>
                   {user.subscription &&
                   user.subscription.status === "active" ? (
-                    <Button onClick={cancelSubscriptionHandler} color="warning" variant="outlined" sx={{margin:"0px 10px"}}> 
+                    <Button onClick={cancelSubscriptionHandler} color="warning" variant="outlined" sx={{margin:"0px 10px"}} disabled={loading}> 
                       Unsubscribe
                     </Button>
                   ) : (
@@ -223,6 +226,7 @@ function Profile({ user }) {
                       <Button
                         color="secondary"
                         variant="outlined"
+                        disabled={loading}
                         sx={{
                           fontWeight: 600,
                           fontSize: "14px",
@@ -243,6 +247,7 @@ function Profile({ user }) {
                 <Button
                   variant="contained"
                   color="secondary"
+                  disabled={loading}
                   sx={{
                     fontWeight: 600,
                     fontSize: "14px",
@@ -259,6 +264,7 @@ function Profile({ user }) {
               <Button
                 variant="contained"
                 color="secondary"
+                disabled={loading}
                 sx={{
                   fontWeight: 600,
                   fontSize: "14px",
@@ -275,6 +281,7 @@ function Profile({ user }) {
             <Box textAlign={"center"}>
             <Button
               onClick={logoutHandler}
+              disabled={loading}
               variant="contained"
               color="secondary"
               sx={{
@@ -290,6 +297,7 @@ function Profile({ user }) {
             </Button>
             <Button
               onClick={logoutHandler}
+              disabled={loading}
               variant="contained"
               color="error"
               sx={{

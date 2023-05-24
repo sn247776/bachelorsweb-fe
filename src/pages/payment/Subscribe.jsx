@@ -101,6 +101,7 @@ const Subscribe = ({user}) => {
                 variant="contained"
                 color="secondary"
                 onClick={subscribeHandler}
+                disabled={loading}
                 sx={{
                   fontWeight: 600,
                   padding: "8px 30px",

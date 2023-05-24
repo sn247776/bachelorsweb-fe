@@ -96,6 +96,7 @@ export default function ChangePassword() {
               fullWidth
               variant="contained"
               color="secondary"
+              disabled={loading}
               sx={{
                 fontWeight: 600,
                 fontSize: "16px",

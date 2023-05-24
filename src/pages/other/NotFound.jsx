@@ -19,7 +19,7 @@ function NotFound() {
           </p>
           </Box>
           <Box>
-          <img src={NotFoundImg} height="300px"/>
+          <img src={NotFoundImg} height="300px" alt="not-found-img"/>
           </Box>
 
         </Box>
