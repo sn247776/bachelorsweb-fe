@@ -199,7 +199,7 @@ function App() {
 
 
 
-                <Route path="/admin" element={<Dashboard/>}/>
+                <Route path="/private" element={<Dashboard/>}/>
                 <Route path="/admin/user" element={<Users/>}/>
                 <Route path="/admin/create" element={<CreateCourse/>}/>
                 <Route path="/admin/courses" element={<AllCourse/>}/>
