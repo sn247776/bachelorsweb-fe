@@ -46,7 +46,7 @@ export default function SignUp() {
 
   const linkStyle = {
     textDecoration: "none",
-    color: "white",
+    color: "var(--main-color)",
   };
 
   return (

@@ -6,6 +6,7 @@ import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import UniversalHero from "../../components/Layout/UniversalHero";
+import { NavLink } from "react-router-dom";
 
 export default function RequestCourse() {
   const handleSubmit = (event) => {
@@ -15,6 +16,11 @@ export default function RequestCourse() {
       email: data.get("email"),
       name: data.get("name"),
     });
+  };
+
+  const linkStyle = {
+    textDecoration: "none",
+    color: "var(--main-color)",
   };
 
   return (
@@ -99,9 +105,9 @@ export default function RequestCourse() {
               Send Mail
             </Button>
             <Box textAlign="center">
-              <Link href="#" variant="body2" color="secondary">
+              <NavLink to="/courses" style={linkStyle}>
                 Available courses
-              </Link>
+              </NavLink>
             </Box>
           </Box>
         </Box>
