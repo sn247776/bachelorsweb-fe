@@ -10,7 +10,7 @@ import {
 } from "../../redux/actions/profile";
 import { toast } from "react-hot-toast";
 import "./profile.css";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 import Footer from "../../components/Layout/Footer";
 
 function Profile({ user }) {
@@ -177,9 +177,10 @@ function Profile({ user }) {
           >
             <Box>
               <Box></Box>
+
               <Avatar
                 alt={user.name}
-                src={user.avatar.url}
+                src={user.avatar && user.avatar.url ? user.avatar.url : "/"}
                 sx={{ width: 260, height: 260, fontSize: "100px" }}
               />
             </Box>
@@ -218,7 +219,13 @@ function Profile({ user }) {
                   </p>
                   {user.subscription &&
                   user.subscription.status === "active" ? (
-                    <Button onClick={cancelSubscriptionHandler} color="warning" variant="outlined" sx={{margin:"0px 10px"}} disabled={loading}> 
+                    <Button
+                      onClick={cancelSubscriptionHandler}
+                      color="warning"
+                      variant="outlined"
+                      sx={{ margin: "0px 10px" }}
+                      disabled={loading}
+                    >
                       Unsubscribe
                     </Button>
                   ) : (
@@ -253,114 +260,115 @@ function Profile({ user }) {
                     fontSize: "14px",
                     textTransform: "none",
                     margin: "2px",
-                    width:"150px",
-                  height:"40px"
+                    width: "150px",
+                    height: "40px",
                   }}
                 >
                   Update Profile
                 </Button>
               </Link>
               <Link to="/changepassword">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  disabled={loading}
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    textTransform: "none",
+                    margin: "2px",
+                    width: "150px",
+                    height: "40px",
+                  }}
+                >
+                  Change Password
+                </Button>
+              </Link>
+            </Box>
+            <Box textAlign={"center"}>
               <Button
+                onClick={logoutHandler}
+                disabled={loading}
                 variant="contained"
                 color="secondary"
-                disabled={loading}
                 sx={{
                   fontWeight: 600,
                   fontSize: "14px",
                   textTransform: "none",
                   margin: "2px",
-                  width:"150px",
-                  height:"40px"
+                  width: "150px",
+                  height: "40px",
                 }}
               >
-                Change Password
+                Logout
               </Button>
-              </Link>
-            </Box>
-            <Box textAlign={"center"}>
-            <Button
-              onClick={logoutHandler}
-              disabled={loading}
-              variant="contained"
-              color="secondary"
-              sx={{
-                fontWeight: 600,
-                fontSize: "14px",
-                textTransform: "none",
-                margin: "2px",
-                width:"150px",
-                  height:"40px"
-              }}
-            >
-              Logout
-            </Button>
-            <Button
-              onClick={logoutHandler}
-              disabled={loading}
-              variant="contained"
-              color="error"
-              sx={{
-                fontWeight: 600,
-                fontSize: "14px",
-                textTransform: "none",
-                margin: "2px",
-                width:"150px",
-                  height:"40px"
-              }}
-            >
-              Delete Account
-            </Button>
+              <Button
+                onClick={logoutHandler}
+                disabled={loading}
+                variant="contained"
+                color="error"
+                sx={{
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textTransform: "none",
+                  margin: "2px",
+                  width: "150px",
+                  height: "40px",
+                }}
+              >
+                Delete Account
+              </Button>
             </Box>
           </Box>
         </Box>
         <Box>
-          
           <Box>
             {user.playlist.length > 0 && (
               <Box>
                 <h1>Playlist</h1>
-<Box className="playlist">
-                
-                {user.playlist.map((element) => (
-                  <Box key={element.course}>
-                    <img src={element.poster} alt="Course Poster" />
+                <Box className="playlist">
+                  {user.playlist.map((element) => (
+                    <Box key={element.course}>
+                      <img src={element.poster} alt="Course Poster" />
 
-                    <Box display={"flex"} justifyContent={"space-between"}>
-                      <Link to={`/course/${element.course}`}>
-                        <Button variant="outlined" color="secondary" sx={{
-                          fontWeight: 600,
-                          fontSize: "14px",
-                          textTransform: "none",
-                          width:"105px",
-                            height:"40px"
-                        }}>
-                          Watch Now
+                      <Box display={"flex"} justifyContent={"space-between"}>
+                        <Link to={`/course/${element.course}`}>
+                          <Button
+                            variant="outlined"
+                            color="secondary"
+                            sx={{
+                              fontWeight: 600,
+                              fontSize: "14px",
+                              textTransform: "none",
+                              width: "105px",
+                              height: "40px",
+                            }}
+                          >
+                            Watch Now
+                          </Button>
+                        </Link>
+
+                        <Button
+                          startIcon={<DeleteIcon />}
+                          color="error"
+                          variant="outlined"
+                          onClick={() =>
+                            removeFromPlaylistHandler(element.course)
+                          }
+                          sx={{
+                            fontWeight: 600,
+                            fontSize: "14px",
+                            textTransform: "none",
+                            width: "105px",
+                            height: "40px",
+                          }}
+                        >
+                          Delete
                         </Button>
-                      </Link>
-
-                      <Button
-                      startIcon={<DeleteIcon />}
-                      color="error"
-                      variant="outlined"
-                        onClick={() =>
-                          removeFromPlaylistHandler(element.course)
-                        }
-                        sx={{
-                          fontWeight: 600,
-                          fontSize: "14px",
-                          textTransform: "none",
-                          width:"105px",
-                            height:"40px"
-                        }}
-                      >
-                       Delete
-                      </Button>
-                      
+                      </Box>
                     </Box>
-                  </Box>
-                ))}
-              </Box>
+                  ))}
+                </Box>
               </Box>
             )}
           </Box>
