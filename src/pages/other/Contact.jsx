@@ -1,23 +1,45 @@
-import React from "react";
+import React ,{ useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import UniversalHero from "../../components/Layout/UniversalHero";
 import Footer from "../../components/Layout/Footer";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { contactUs } from '../../redux/actions/other';
 
 export default function Contact() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      name: data.get("name"),
-    });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const dispatch = useDispatch();
+
+  const {
+    loading,
+    error,
+    message: stateMessage,
+  } = useSelector(state => state.other);
+
+  const submitHandler = e => {
+    e.preventDefault();
+    dispatch(contactUs(name, email, message));
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
+
+    if (stateMessage) {
+      toast.success(stateMessage);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, stateMessage]);
 
   const linkStyle = {
     textDecoration: "none",
@@ -45,7 +67,7 @@ export default function Contact() {
           </Box>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={submitHandler}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -57,6 +79,8 @@ export default function Contact() {
               label="Name"
               name="name"
               autoComplete="name"
+              value={name}
+              onChange={e => setName(e.target.value)}
               autoFocus
               color="secondary"
               variant="filled"
@@ -66,6 +90,8 @@ export default function Contact() {
               required
               fullWidth
               id="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -80,6 +106,8 @@ export default function Contact() {
               id="message"
               label="Message"
               name="message"
+              value={message}
+              onChange={e => setMessage(e.target.value)}
               autoComplete="message"
               multiline
               rows={3}
@@ -89,6 +117,7 @@ export default function Contact() {
 
             <Button
               type="submit"
+              disabled = {loading}
               fullWidth
               variant="contained"
               color="secondary"
