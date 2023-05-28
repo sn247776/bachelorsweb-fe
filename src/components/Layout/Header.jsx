@@ -57,7 +57,31 @@ const Header = () => {
     }
   };
 
-  window.addEventListener("scroll", changeBackground);
+  useEffect(() => {
+    const handleScroll = () => {
+      changeBackground();
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Store the scroll position when navigating away from the page
+    const handleBeforeUnload = () => {
+      window.sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Restore the scroll position when returning to the page
+    const scrollPosition = window.sessionStorage.getItem("scrollPosition");
+    if (scrollPosition) {
+      window.scrollTo(0, parseInt(scrollPosition));
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <Box>

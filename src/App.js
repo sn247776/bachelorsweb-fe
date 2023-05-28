@@ -194,11 +194,6 @@ function App() {
                 <Route path="/paymentfail" element={<PaymentFail />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/courserequest" element={<RequestCourse />} />
-
-
-
-
-
                 <Route path="/private" element={<Dashboard/>}/>
                 <Route path="/admin/user" element={<Users/>}/>
                 <Route path="/admin/create" element={<CreateCourse/>}/>
