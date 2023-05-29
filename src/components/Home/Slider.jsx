@@ -23,7 +23,7 @@ function Slider() {
             </Box>
             <Box mx={2}>
               <h3>Sophie Moore</h3>
-              <h4>UI Designer</h4>
+              <h4>FrontEnd Developer</h4>
             </Box>
           </Box>
         </div>
@@ -32,15 +32,15 @@ function Slider() {
           <p>
             "Bachelors Web provided the perfect solution for my education amidst
             a hectic schedule. Their online courses offered the flexibility and
-            convenience I needed to balance work and studies effectively.
+            convenience I needed to balance work and studies effectively. for all the students.
           </p>
           <Box display={"flex"} alignItems={"center"}>
             <Box>
               <img src={SlideImg1} />
             </Box>
             <Box mx={2}>
-              <h3>Sophie Moore</h3>
-              <h4>UI Designer</h4>
+              <h3>John Wick</h3>
+              <h4>Backend Developer</h4>
             </Box>
           </Box>
         </div>

@@ -50,7 +50,7 @@ const Header = () => {
   };
 
   const changeBackground = () => {
-    if (window.scrollY >= 80) {
+    if (window.scrollY >= 200) {
       setNavbar(true);
     } else {
       setNavbar(false);
@@ -91,8 +91,7 @@ const Header = () => {
         p={2}
         px={3}
         alignItems="center"
-        className="navbar"
-        bgcolor={navbar ? "white" : ""}
+        className={navbar ? "navbar nav-fixed" : "navbar"}
       >
         <Box>
           <NavLink to={"/"} style={logoColor}>
