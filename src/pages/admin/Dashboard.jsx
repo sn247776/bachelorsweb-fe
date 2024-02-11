@@ -137,7 +137,7 @@ const Dashboard = () => {
               <Paper>
                 <Box my={5} p={5}>
                   <Typography variant="h5">Views Graph</Typography>
-                  <LineChart views={stats.map((item) => item.views)} />
+                  {/* <LineChart views={stats.map((item) => item.views)} /> */}
                 </Box>
               </Paper>
 
@@ -176,9 +176,9 @@ const Dashboard = () => {
                     Users
                   </Typography>
 
-                  <DoughnutChart
+                  {/* <DoughnutChart
                     users={[subscriptionCount, usersCount - subscriptionCount]}
-                  />
+                  /> */}
                 </Box>
                 </Paper>
               </Box>
